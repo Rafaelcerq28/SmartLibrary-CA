@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package smartlibrary;
+
+// Serviço de Gerenciamento de Livros
+service BookManagement {
+    // Simple RPC
+    rpc AddBook (BookRequest) returns (BookResponse);
+    
+    // Server-side Streaming RPC
+    rpc ListBooks (Empty) returns (stream Book);
+}
+
+// Serviço de Gerenciamento de Usuários
+service UserManagement {
+    // Simple RPC
+    rpc AddUser (UserRequest) returns (UserResponse);
+    
+    // Client-side Streaming RPC
+    rpc RemoveUsers (stream UserRequest) returns (UserResponse);
+}
+
+// Serviço de Empréstimo de Livros
+service LoanManagement {
+    // Simple RPC
+    rpc BorrowBook (LoanRequest) returns (LoanResponse);
+    
+    // Simple RPC
+    rpc ReturnBook (LoanRequest) returns (LoanResponse);
+    
+    // Bidirectional Streaming RPC
+    rpc MonitorLoans (stream LoanRequest) returns (stream LoanResponse);
+}
+
+// Mensagem para adicionar ou remover um livro
+message BookRequest {
+    string isbn = 1;
+    string title = 2;
+    string author = 3;
+}
+
+// Mensagem de resposta para operações de livro
+message BookResponse {
+    string message = 1;
+}
+
+// Estrutura de um livro
+message Book {
+    string isbn = 1;
+    string title = 2;
+    string author = 3;
+}
+
+// Mensagem para adicionar ou remover um usuário
+message UserRequest {
+    string user_id = 1;
+    string name = 2;
+}
+
+// Mensagem de resposta para operações de usuário
+message UserResponse {
+    string message = 1;
+}
+
+// Mensagem para operações de empréstimo de livros
+message LoanRequest {
+    string user_id = 1;
+    string isbn = 2;
+}
+
+// Mensagem de resposta para operações de empréstimo de livros
+message LoanResponse {
+    string message = 1;
+}
+
+// Mensagem vazia para requisições que não necessitam parâmetros
+message Empty {}
