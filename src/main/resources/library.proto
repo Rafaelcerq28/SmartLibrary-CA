@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package smartlibrary;
+package com.grpcfiles;
 
 // Serviço de Gerenciamento de Livros
 service BookManagement {

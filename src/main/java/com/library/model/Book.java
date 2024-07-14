@@ -1,24 +1,29 @@
 package com.library.model;
 
+import java.util.ArrayList;
+
 public class Book {
 
-    private Long id;
+    private int id;
     private String isbn;
     private String title;
     private String author;
     private boolean isLoaned;
     
-    public Book(Long id, String isbn, String title, String author) {
+    public Book(int id, String isbn, String title, String author) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
     }
+
+    public Book() {
+    }
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getIsbn() {

@@ -1,24 +1,29 @@
 package com.library.model;
 
+import java.util.List;
+
 public class User {
     
-    private Long id;
+    private int id;
     private String name;
     private String phone;
     private String address;
+    List<Book> booksBorrowed;
     
-    public User(Long id, String name, String phone, String address) {
+
+
+    public User(int id, String name, String phone, String address) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,6 +49,20 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+        public List<Book> getBooksBorrowed() {
+        return booksBorrowed;
+    }
+
+    public void setBooksBorrowed(List<Book> booksBorrowed) {
+        this.booksBorrowed = booksBorrowed;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", booksBorrowed="
+                + booksBorrowed + "]";
     }
 
     

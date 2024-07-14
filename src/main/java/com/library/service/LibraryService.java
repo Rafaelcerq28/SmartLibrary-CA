@@ -1,0 +1,10 @@
+package com.library.service;
+
+public class LibraryService {
+/*
+ * ESSE SOFTWARE VAI TER SO UM SERVICE REUNINDO TODOS OS 
+ * METODOS DO CRUD DE TODAS AS CLASSES AQUI, 
+ * SEM BANCO DE DADOS NÃO TEM COMO SER DE OUTRO JEITO
+ * 
+ */
+}
