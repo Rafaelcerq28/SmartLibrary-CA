@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package com.grpcfiles;
+
+service BookManagement {
+    // Simple RPC
+    rpc AddBook (BookRequest) returns (BookResponse);
+    
+    // Server-side Streaming RPC
+    rpc ListBooks (Empty) returns (stream Book);
+}
+
+// Mensagem para adicionar ou remover um livro
+message BookRequest {
+    string isbn = 1;
+    string title = 2;
+    string author = 3;
+}
+
+// Mensagem de resposta para operações de livro
+message BookResponse {
+    string message = 1;
+}
+
+// Estrutura de um livro
+message Book {
+    string isbn = 1;
+    string title = 2;
+    string author = 3;
+}
+
+// Mensagem vazia para requisições que não necessitam parâmetros
+message Empty {}

@@ -16,13 +16,10 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
- * <pre>
- * Serviço de Gerenciamento de Livros
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.15.0)",
-    comments = "Source: library.proto")
+    comments = "Source: book.proto")
 public final class BookManagementGrpc {
 
   private BookManagementGrpc() {}
@@ -30,30 +27,30 @@ public final class BookManagementGrpc {
   public static final String SERVICE_NAME = "com.grpcfiles.BookManagement";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.Library.BookRequest,
-      com.grpcfiles.Library.BookResponse> getAddBookMethod;
+  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.BookRequest,
+      com.grpcfiles.BookOuterClass.BookResponse> getAddBookMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AddBook",
-      requestType = com.grpcfiles.Library.BookRequest.class,
-      responseType = com.grpcfiles.Library.BookResponse.class,
+      requestType = com.grpcfiles.BookOuterClass.BookRequest.class,
+      responseType = com.grpcfiles.BookOuterClass.BookResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.grpcfiles.Library.BookRequest,
-      com.grpcfiles.Library.BookResponse> getAddBookMethod() {
-    io.grpc.MethodDescriptor<com.grpcfiles.Library.BookRequest, com.grpcfiles.Library.BookResponse> getAddBookMethod;
+  public static io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.BookRequest,
+      com.grpcfiles.BookOuterClass.BookResponse> getAddBookMethod() {
+    io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.BookRequest, com.grpcfiles.BookOuterClass.BookResponse> getAddBookMethod;
     if ((getAddBookMethod = BookManagementGrpc.getAddBookMethod) == null) {
       synchronized (BookManagementGrpc.class) {
         if ((getAddBookMethod = BookManagementGrpc.getAddBookMethod) == null) {
           BookManagementGrpc.getAddBookMethod = getAddBookMethod = 
-              io.grpc.MethodDescriptor.<com.grpcfiles.Library.BookRequest, com.grpcfiles.Library.BookResponse>newBuilder()
+              io.grpc.MethodDescriptor.<com.grpcfiles.BookOuterClass.BookRequest, com.grpcfiles.BookOuterClass.BookResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "com.grpcfiles.BookManagement", "AddBook"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Library.BookRequest.getDefaultInstance()))
+                  com.grpcfiles.BookOuterClass.BookRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Library.BookResponse.getDefaultInstance()))
+                  com.grpcfiles.BookOuterClass.BookResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new BookManagementMethodDescriptorSupplier("AddBook"))
                   .build();
           }
@@ -62,30 +59,30 @@ public final class BookManagementGrpc {
      return getAddBookMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.Library.Empty,
-      com.grpcfiles.Library.Book> getListBooksMethod;
+  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.Empty,
+      com.grpcfiles.BookOuterClass.Book> getListBooksMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ListBooks",
-      requestType = com.grpcfiles.Library.Empty.class,
-      responseType = com.grpcfiles.Library.Book.class,
+      requestType = com.grpcfiles.BookOuterClass.Empty.class,
+      responseType = com.grpcfiles.BookOuterClass.Book.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<com.grpcfiles.Library.Empty,
-      com.grpcfiles.Library.Book> getListBooksMethod() {
-    io.grpc.MethodDescriptor<com.grpcfiles.Library.Empty, com.grpcfiles.Library.Book> getListBooksMethod;
+  public static io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.Empty,
+      com.grpcfiles.BookOuterClass.Book> getListBooksMethod() {
+    io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.Empty, com.grpcfiles.BookOuterClass.Book> getListBooksMethod;
     if ((getListBooksMethod = BookManagementGrpc.getListBooksMethod) == null) {
       synchronized (BookManagementGrpc.class) {
         if ((getListBooksMethod = BookManagementGrpc.getListBooksMethod) == null) {
           BookManagementGrpc.getListBooksMethod = getListBooksMethod = 
-              io.grpc.MethodDescriptor.<com.grpcfiles.Library.Empty, com.grpcfiles.Library.Book>newBuilder()
+              io.grpc.MethodDescriptor.<com.grpcfiles.BookOuterClass.Empty, com.grpcfiles.BookOuterClass.Book>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "com.grpcfiles.BookManagement", "ListBooks"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Library.Empty.getDefaultInstance()))
+                  com.grpcfiles.BookOuterClass.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Library.Book.getDefaultInstance()))
+                  com.grpcfiles.BookOuterClass.Book.getDefaultInstance()))
                   .setSchemaDescriptor(new BookManagementMethodDescriptorSupplier("ListBooks"))
                   .build();
           }
@@ -118,9 +115,6 @@ public final class BookManagementGrpc {
   }
 
   /**
-   * <pre>
-   * Serviço de Gerenciamento de Livros
-   * </pre>
    */
   public static abstract class BookManagementImplBase implements io.grpc.BindableService {
 
@@ -129,8 +123,8 @@ public final class BookManagementGrpc {
      * Simple RPC
      * </pre>
      */
-    public void addBook(com.grpcfiles.Library.BookRequest request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Library.BookResponse> responseObserver) {
+    public void addBook(com.grpcfiles.BookOuterClass.BookRequest request,
+        io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getAddBookMethod(), responseObserver);
     }
 
@@ -139,8 +133,8 @@ public final class BookManagementGrpc {
      * Server-side Streaming RPC
      * </pre>
      */
-    public void listBooks(com.grpcfiles.Library.Empty request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Library.Book> responseObserver) {
+    public void listBooks(com.grpcfiles.BookOuterClass.Empty request,
+        io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.Book> responseObserver) {
       asyncUnimplementedUnaryCall(getListBooksMethod(), responseObserver);
     }
 
@@ -150,24 +144,21 @@ public final class BookManagementGrpc {
             getAddBookMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                com.grpcfiles.Library.BookRequest,
-                com.grpcfiles.Library.BookResponse>(
+                com.grpcfiles.BookOuterClass.BookRequest,
+                com.grpcfiles.BookOuterClass.BookResponse>(
                   this, METHODID_ADD_BOOK)))
           .addMethod(
             getListBooksMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                com.grpcfiles.Library.Empty,
-                com.grpcfiles.Library.Book>(
+                com.grpcfiles.BookOuterClass.Empty,
+                com.grpcfiles.BookOuterClass.Book>(
                   this, METHODID_LIST_BOOKS)))
           .build();
     }
   }
 
   /**
-   * <pre>
-   * Serviço de Gerenciamento de Livros
-   * </pre>
    */
   public static final class BookManagementStub extends io.grpc.stub.AbstractStub<BookManagementStub> {
     private BookManagementStub(io.grpc.Channel channel) {
@@ -190,8 +181,8 @@ public final class BookManagementGrpc {
      * Simple RPC
      * </pre>
      */
-    public void addBook(com.grpcfiles.Library.BookRequest request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Library.BookResponse> responseObserver) {
+    public void addBook(com.grpcfiles.BookOuterClass.BookRequest request,
+        io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddBookMethod(), getCallOptions()), request, responseObserver);
     }
@@ -201,17 +192,14 @@ public final class BookManagementGrpc {
      * Server-side Streaming RPC
      * </pre>
      */
-    public void listBooks(com.grpcfiles.Library.Empty request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Library.Book> responseObserver) {
+    public void listBooks(com.grpcfiles.BookOuterClass.Empty request,
+        io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.Book> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getListBooksMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
-   * <pre>
-   * Serviço de Gerenciamento de Livros
-   * </pre>
    */
   public static final class BookManagementBlockingStub extends io.grpc.stub.AbstractStub<BookManagementBlockingStub> {
     private BookManagementBlockingStub(io.grpc.Channel channel) {
@@ -234,7 +222,7 @@ public final class BookManagementGrpc {
      * Simple RPC
      * </pre>
      */
-    public com.grpcfiles.Library.BookResponse addBook(com.grpcfiles.Library.BookRequest request) {
+    public com.grpcfiles.BookOuterClass.BookResponse addBook(com.grpcfiles.BookOuterClass.BookRequest request) {
       return blockingUnaryCall(
           getChannel(), getAddBookMethod(), getCallOptions(), request);
     }
@@ -244,17 +232,14 @@ public final class BookManagementGrpc {
      * Server-side Streaming RPC
      * </pre>
      */
-    public java.util.Iterator<com.grpcfiles.Library.Book> listBooks(
-        com.grpcfiles.Library.Empty request) {
+    public java.util.Iterator<com.grpcfiles.BookOuterClass.Book> listBooks(
+        com.grpcfiles.BookOuterClass.Empty request) {
       return blockingServerStreamingCall(
           getChannel(), getListBooksMethod(), getCallOptions(), request);
     }
   }
 
   /**
-   * <pre>
-   * Serviço de Gerenciamento de Livros
-   * </pre>
    */
   public static final class BookManagementFutureStub extends io.grpc.stub.AbstractStub<BookManagementFutureStub> {
     private BookManagementFutureStub(io.grpc.Channel channel) {
@@ -277,8 +262,8 @@ public final class BookManagementGrpc {
      * Simple RPC
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.Library.BookResponse> addBook(
-        com.grpcfiles.Library.BookRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.BookOuterClass.BookResponse> addBook(
+        com.grpcfiles.BookOuterClass.BookRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getAddBookMethod(), getCallOptions()), request);
     }
@@ -305,12 +290,12 @@ public final class BookManagementGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ADD_BOOK:
-          serviceImpl.addBook((com.grpcfiles.Library.BookRequest) request,
-              (io.grpc.stub.StreamObserver<com.grpcfiles.Library.BookResponse>) responseObserver);
+          serviceImpl.addBook((com.grpcfiles.BookOuterClass.BookRequest) request,
+              (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse>) responseObserver);
           break;
         case METHODID_LIST_BOOKS:
-          serviceImpl.listBooks((com.grpcfiles.Library.Empty) request,
-              (io.grpc.stub.StreamObserver<com.grpcfiles.Library.Book>) responseObserver);
+          serviceImpl.listBooks((com.grpcfiles.BookOuterClass.Empty) request,
+              (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.Book>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -334,7 +319,7 @@ public final class BookManagementGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.grpcfiles.Library.getDescriptor();
+      return com.grpcfiles.BookOuterClass.getDescriptor();
     }
 
     @java.lang.Override

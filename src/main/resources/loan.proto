@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package com.grpcfiles;
+
+// Serviço de Empréstimo de Livros
+service LoanManagement {
+    // Simple RPC
+    rpc BorrowBook (LoanRequest) returns (LoanResponse);
+    
+    // Simple RPC
+    rpc ReturnBook (LoanRequest) returns (LoanResponse);
+    
+    // Bidirectional Streaming RPC
+    rpc MonitorLoans (stream LoanRequest) returns (stream LoanResponse);
+}
+
+// Mensagem para operações de empréstimo de livros
+message LoanRequest {
+    string user_id = 1;
+    string isbn = 2;
+}
+
+// Mensagem de resposta para operações de empréstimo de livros
+message LoanResponse {
+    string message = 1;
+    //para retornar lista de usuarios:
+    //repeated User users = 2;
+}
+
+// Mensagem vazia para requisições que não necessitam parâmetros
+message Empty {}
