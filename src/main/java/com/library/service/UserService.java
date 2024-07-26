@@ -22,7 +22,7 @@ public class UserService extends UserManagementImplBase{
         String userName = request.getName();
 
         //Testing users in the arrayList
-        User user = new User(userId, userName, "", "");
+        User user = new User(userId, userName, " ", " ");
 
         users.add(user);
         System.out.println(users.toString());
