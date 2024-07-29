@@ -16,7 +16,7 @@ public class TestClient {
                         build();    
 
          UserManagementBlockingStub userStub = UserManagementGrpc.newBlockingStub(channel);
-         
+         //Call the user request sending a "test" as name and 1 as user Id
          UserRequest userRequest = UserRequest.newBuilder().setUserId(1).setName("teste").build();
 
          UserResponse response = userStub.addUser(userRequest);
