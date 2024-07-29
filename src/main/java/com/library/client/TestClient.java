@@ -20,7 +20,7 @@ public class TestClient {
          UserRequest userRequest = UserRequest.newBuilder().setUserId(1).setName("teste").build();
 
          UserResponse response = userStub.addUser(userRequest);
-
+        //show the return message
          System.out.println(response.getMessage());
     }
 }   
