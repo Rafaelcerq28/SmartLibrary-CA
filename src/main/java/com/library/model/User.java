@@ -1,16 +1,11 @@
 package com.library.model;
 
-import java.util.List;
-
-public class User {
+public class User implements Comparable<Object>{
     
     private int id;
     private String name;
     private String phone;
     private String address;
-    List<Book> booksBorrowed;
-    
-
 
     public User(int id, String name, String phone, String address) {
         this.id = id;
@@ -19,7 +14,11 @@ public class User {
         this.address = address;
     }
 
-
+    @Override
+    public int compareTo(Object obj) {
+        User myUser = (User) obj;
+        return Integer.compare(this.id, myUser.id);  
+    }
     
     public int getId() {
         return id;
@@ -53,18 +52,10 @@ public class User {
         this.address = address;
     }
 
-        public List<Book> getBooksBorrowed() {
-        return booksBorrowed;
-    }
-
-    public void setBooksBorrowed(List<Book> booksBorrowed) {
-        this.booksBorrowed = booksBorrowed;
-    }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", booksBorrowed="
-                + booksBorrowed + "]";
+        return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
     }
 
     

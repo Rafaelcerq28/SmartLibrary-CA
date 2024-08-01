@@ -32,6 +32,26 @@ public final class UserOuterClass {
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>string phone = 3;</code>
+     */
+    java.lang.String getPhone();
+    /**
+     * <code>string phone = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getPhoneBytes();
+
+    /**
+     * <code>string address = 4;</code>
+     */
+    java.lang.String getAddress();
+    /**
+     * <code>string address = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
   }
   /**
    * <pre>
@@ -52,6 +72,8 @@ public final class UserOuterClass {
     private UserRequest() {
       userId_ = 0;
       name_ = "";
+      phone_ = "";
+      address_ = "";
     }
 
     @java.lang.Override
@@ -87,6 +109,18 @@ public final class UserOuterClass {
               java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              phone_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              address_ = s;
               break;
             }
             default: {
@@ -164,6 +198,74 @@ public final class UserOuterClass {
       }
     }
 
+    public static final int PHONE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object phone_;
+    /**
+     * <code>string phone = 3;</code>
+     */
+    public java.lang.String getPhone() {
+      java.lang.Object ref = phone_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        phone_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string phone = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPhoneBytes() {
+      java.lang.Object ref = phone_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        phone_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 4;
+    private volatile java.lang.Object address_;
+    /**
+     * <code>string address = 4;</code>
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -184,6 +286,12 @@ public final class UserOuterClass {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
+      if (!getPhoneBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, phone_);
+      }
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, address_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -199,6 +307,12 @@ public final class UserOuterClass {
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (!getPhoneBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, phone_);
+      }
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, address_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -220,6 +334,10 @@ public final class UserOuterClass {
           == other.getUserId());
       result = result && getName()
           .equals(other.getName());
+      result = result && getPhone()
+          .equals(other.getPhone());
+      result = result && getAddress()
+          .equals(other.getAddress());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -235,6 +353,10 @@ public final class UserOuterClass {
       hash = (53 * hash) + getUserId();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + PHONE_FIELD_NUMBER;
+      hash = (53 * hash) + getPhone().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -376,6 +498,10 @@ public final class UserOuterClass {
 
         name_ = "";
 
+        phone_ = "";
+
+        address_ = "";
+
         return this;
       }
 
@@ -404,6 +530,8 @@ public final class UserOuterClass {
         com.grpcfiles.UserOuterClass.UserRequest result = new com.grpcfiles.UserOuterClass.UserRequest(this);
         result.userId_ = userId_;
         result.name_ = name_;
+        result.phone_ = phone_;
+        result.address_ = address_;
         onBuilt();
         return result;
       }
@@ -457,6 +585,14 @@ public final class UserOuterClass {
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getPhone().isEmpty()) {
+          phone_ = other.phone_;
+          onChanged();
+        }
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -579,6 +715,144 @@ public final class UserOuterClass {
   checkByteStringIsUtf8(value);
         
         name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object phone_ = "";
+      /**
+       * <code>string phone = 3;</code>
+       */
+      public java.lang.String getPhone() {
+        java.lang.Object ref = phone_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          phone_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string phone = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPhoneBytes() {
+        java.lang.Object ref = phone_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          phone_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string phone = 3;</code>
+       */
+      public Builder setPhone(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        phone_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string phone = 3;</code>
+       */
+      public Builder clearPhone() {
+        
+        phone_ = getDefaultInstance().getPhone();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string phone = 3;</code>
+       */
+      public Builder setPhoneBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        phone_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object address_ = "";
+      /**
+       * <code>string address = 4;</code>
+       */
+      public java.lang.String getAddress() {
+        java.lang.Object ref = address_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string address = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        java.lang.Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 4;</code>
+       */
+      public Builder setAddress(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 4;</code>
+       */
+      public Builder clearAddress() {
+        
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 4;</code>
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -2436,17 +2710,17 @@ public final class UserOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nuser.proto\022\rcom.grpcfiles\",\n\013UserReque" +
-      "st\022\017\n\007user_id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\"\037\n\014Use" +
-      "rResponse\022\017\n\007message\030\001 \001(\t\"4\n\004User\022\017\n\007us" +
-      "er_id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005email\030\003 \001(\t" +
-      "\"\007\n\005Empty2\343\001\n\016UserManagement\022B\n\007AddUser\022" +
-      "\032.com.grpcfiles.UserRequest\032\033.com.grpcfi" +
-      "les.UserResponse\022H\n\013RemoveUsers\022\032.com.gr" +
+      "\n\nuser.proto\022\rcom.grpcfiles\"L\n\013UserReque" +
+      "st\022\017\n\007user_id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005pho" +
+      "ne\030\003 \001(\t\022\017\n\007address\030\004 \001(\t\"\037\n\014UserRespons" +
+      "e\022\017\n\007message\030\001 \001(\t\"4\n\004User\022\017\n\007user_id\030\001 " +
+      "\001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\"\007\n\005Empt" +
+      "y2\335\001\n\016UserManagement\022B\n\007AddUser\022\032.com.gr" +
       "pcfiles.UserRequest\032\033.com.grpcfiles.User" +
-      "Response(\001\022C\n\010GetUsers\022\032.com.grpcfiles.U" +
-      "serRequest\032\033.com.grpcfiles.UserResponseb" +
-      "\006proto3"
+      "Response\022F\n\013RemoveUsers\022\032.com.grpcfiles." +
+      "UserRequest\032\033.com.grpcfiles.UserResponse" +
+      "\022?\n\010GetUsers\022\024.com.grpcfiles.Empty\032\033.com" +
+      ".grpcfiles.UserResponse0\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2465,7 +2739,7 @@ public final class UserOuterClass {
     internal_static_com_grpcfiles_UserRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_UserRequest_descriptor,
-        new java.lang.String[] { "UserId", "Name", });
+        new java.lang.String[] { "UserId", "Name", "Phone", "Address", });
     internal_static_com_grpcfiles_UserResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_grpcfiles_UserResponse_fieldAccessorTable = new

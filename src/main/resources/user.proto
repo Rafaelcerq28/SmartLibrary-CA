@@ -8,16 +8,18 @@ service UserManagement {
     rpc AddUser (UserRequest) returns (UserResponse);
     
     // Client-side Streaming RPC
-    rpc RemoveUsers (stream UserRequest) returns (UserResponse);
+    rpc RemoveUsers (UserRequest) returns (UserResponse);
 
     //Lista de Users
-    rpc GetUsers (UserRequest) returns (UserResponse);
+    rpc GetUsers (Empty) returns (stream UserResponse);
 }
 
 // Mensagem para adicionar ou remover um usuário
 message UserRequest {
     int32 user_id = 1;
     string name = 2;
+    string phone = 3;
+    string address = 4;
 }
 
 // Mensagem de resposta para operações de usuário

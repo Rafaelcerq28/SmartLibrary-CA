@@ -69,7 +69,7 @@ public final class UserManagementGrpc {
       fullMethodName = SERVICE_NAME + '/' + "RemoveUsers",
       requestType = com.grpcfiles.UserOuterClass.UserRequest.class,
       responseType = com.grpcfiles.UserOuterClass.UserResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.UserRequest,
       com.grpcfiles.UserOuterClass.UserResponse> getRemoveUsersMethod() {
     io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.UserRequest, com.grpcfiles.UserOuterClass.UserResponse> getRemoveUsersMethod;
@@ -78,7 +78,7 @@ public final class UserManagementGrpc {
         if ((getRemoveUsersMethod = UserManagementGrpc.getRemoveUsersMethod) == null) {
           UserManagementGrpc.getRemoveUsersMethod = getRemoveUsersMethod = 
               io.grpc.MethodDescriptor.<com.grpcfiles.UserOuterClass.UserRequest, com.grpcfiles.UserOuterClass.UserResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "com.grpcfiles.UserManagement", "RemoveUsers"))
               .setSampledToLocalTracing(true)
@@ -94,28 +94,28 @@ public final class UserManagementGrpc {
      return getRemoveUsersMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.UserRequest,
+  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.Empty,
       com.grpcfiles.UserOuterClass.UserResponse> getGetUsersMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "GetUsers",
-      requestType = com.grpcfiles.UserOuterClass.UserRequest.class,
+      requestType = com.grpcfiles.UserOuterClass.Empty.class,
       responseType = com.grpcfiles.UserOuterClass.UserResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.UserRequest,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.Empty,
       com.grpcfiles.UserOuterClass.UserResponse> getGetUsersMethod() {
-    io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.UserRequest, com.grpcfiles.UserOuterClass.UserResponse> getGetUsersMethod;
+    io.grpc.MethodDescriptor<com.grpcfiles.UserOuterClass.Empty, com.grpcfiles.UserOuterClass.UserResponse> getGetUsersMethod;
     if ((getGetUsersMethod = UserManagementGrpc.getGetUsersMethod) == null) {
       synchronized (UserManagementGrpc.class) {
         if ((getGetUsersMethod = UserManagementGrpc.getGetUsersMethod) == null) {
           UserManagementGrpc.getGetUsersMethod = getGetUsersMethod = 
-              io.grpc.MethodDescriptor.<com.grpcfiles.UserOuterClass.UserRequest, com.grpcfiles.UserOuterClass.UserResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              io.grpc.MethodDescriptor.<com.grpcfiles.UserOuterClass.Empty, com.grpcfiles.UserOuterClass.UserResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "com.grpcfiles.UserManagement", "GetUsers"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.UserOuterClass.UserRequest.getDefaultInstance()))
+                  com.grpcfiles.UserOuterClass.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.grpcfiles.UserOuterClass.UserResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new UserManagementMethodDescriptorSupplier("GetUsers"))
@@ -171,9 +171,9 @@ public final class UserManagementGrpc {
      * Client-side Streaming RPC
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserRequest> removeUsers(
+    public void removeUsers(com.grpcfiles.UserOuterClass.UserRequest request,
         io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getRemoveUsersMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getRemoveUsersMethod(), responseObserver);
     }
 
     /**
@@ -181,7 +181,7 @@ public final class UserManagementGrpc {
      *Lista de Users
      * </pre>
      */
-    public void getUsers(com.grpcfiles.UserOuterClass.UserRequest request,
+    public void getUsers(com.grpcfiles.UserOuterClass.Empty request,
         io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getGetUsersMethod(), responseObserver);
     }
@@ -197,16 +197,16 @@ public final class UserManagementGrpc {
                   this, METHODID_ADD_USER)))
           .addMethod(
             getRemoveUsersMethod(),
-            asyncClientStreamingCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 com.grpcfiles.UserOuterClass.UserRequest,
                 com.grpcfiles.UserOuterClass.UserResponse>(
                   this, METHODID_REMOVE_USERS)))
           .addMethod(
             getGetUsersMethod(),
-            asyncUnaryCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
-                com.grpcfiles.UserOuterClass.UserRequest,
+                com.grpcfiles.UserOuterClass.Empty,
                 com.grpcfiles.UserOuterClass.UserResponse>(
                   this, METHODID_GET_USERS)))
           .build();
@@ -250,10 +250,10 @@ public final class UserManagementGrpc {
      * Client-side Streaming RPC
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserRequest> removeUsers(
+    public void removeUsers(com.grpcfiles.UserOuterClass.UserRequest request,
         io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getRemoveUsersMethod(), getCallOptions()), responseObserver);
+      asyncUnaryCall(
+          getChannel().newCall(getRemoveUsersMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -261,9 +261,9 @@ public final class UserManagementGrpc {
      *Lista de Users
      * </pre>
      */
-    public void getUsers(com.grpcfiles.UserOuterClass.UserRequest request,
+    public void getUsers(com.grpcfiles.UserOuterClass.Empty request,
         io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse> responseObserver) {
-      asyncUnaryCall(
+      asyncServerStreamingCall(
           getChannel().newCall(getGetUsersMethod(), getCallOptions()), request, responseObserver);
     }
   }
@@ -301,11 +301,22 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
+     * Client-side Streaming RPC
+     * </pre>
+     */
+    public com.grpcfiles.UserOuterClass.UserResponse removeUsers(com.grpcfiles.UserOuterClass.UserRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRemoveUsersMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      *Lista de Users
      * </pre>
      */
-    public com.grpcfiles.UserOuterClass.UserResponse getUsers(com.grpcfiles.UserOuterClass.UserRequest request) {
-      return blockingUnaryCall(
+    public java.util.Iterator<com.grpcfiles.UserOuterClass.UserResponse> getUsers(
+        com.grpcfiles.UserOuterClass.Empty request) {
+      return blockingServerStreamingCall(
           getChannel(), getGetUsersMethod(), getCallOptions(), request);
     }
   }
@@ -344,19 +355,19 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     *Lista de Users
+     * Client-side Streaming RPC
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.UserOuterClass.UserResponse> getUsers(
+    public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.UserOuterClass.UserResponse> removeUsers(
         com.grpcfiles.UserOuterClass.UserRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetUsersMethod(), getCallOptions()), request);
+          getChannel().newCall(getRemoveUsersMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_ADD_USER = 0;
-  private static final int METHODID_GET_USERS = 1;
-  private static final int METHODID_REMOVE_USERS = 2;
+  private static final int METHODID_REMOVE_USERS = 1;
+  private static final int METHODID_GET_USERS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -379,8 +390,12 @@ public final class UserManagementGrpc {
           serviceImpl.addUser((com.grpcfiles.UserOuterClass.UserRequest) request,
               (io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse>) responseObserver);
           break;
+        case METHODID_REMOVE_USERS:
+          serviceImpl.removeUsers((com.grpcfiles.UserOuterClass.UserRequest) request,
+              (io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse>) responseObserver);
+          break;
         case METHODID_GET_USERS:
-          serviceImpl.getUsers((com.grpcfiles.UserOuterClass.UserRequest) request,
+          serviceImpl.getUsers((com.grpcfiles.UserOuterClass.Empty) request,
               (io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse>) responseObserver);
           break;
         default:
@@ -393,9 +408,6 @@ public final class UserManagementGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_REMOVE_USERS:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.removeUsers(
-              (io.grpc.stub.StreamObserver<com.grpcfiles.UserOuterClass.UserResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
