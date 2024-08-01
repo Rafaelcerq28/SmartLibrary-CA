@@ -35,7 +35,7 @@ public class TestClient {
                                             setAddress("summerhill parade").
                                             build();
 
-        response = userStub.addUser(userRequest);
+        response = userStub.addUser(userRequest); 
         // show the return message
         System.out.println(response.getMessage());
         //end second user 
@@ -43,6 +43,7 @@ public class TestClient {
         //showing the list of users
         System.out.println("\n List of user");
         java.util.Iterator<UserResponse> responseList = userStub.getUsers(null);
+        //iterates my iteratos to return a list os users
         while (responseList.hasNext()) {
             System.out.println(responseList.next().getMessage());    
         }
