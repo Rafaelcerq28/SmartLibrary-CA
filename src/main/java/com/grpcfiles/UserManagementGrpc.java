@@ -168,7 +168,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     * Client-side Streaming RPC
+     * Simple RPC
      * </pre>
      */
     public void removeUsers(com.grpcfiles.UserOuterClass.UserRequest request,
@@ -178,7 +178,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     *Lista de Users
+     *Server-side Streaming RPC
      * </pre>
      */
     public void getUsers(com.grpcfiles.UserOuterClass.Empty request,
@@ -247,7 +247,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     * Client-side Streaming RPC
+     * Simple RPC
      * </pre>
      */
     public void removeUsers(com.grpcfiles.UserOuterClass.UserRequest request,
@@ -258,7 +258,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     *Lista de Users
+     *Server-side Streaming RPC
      * </pre>
      */
     public void getUsers(com.grpcfiles.UserOuterClass.Empty request,
@@ -301,7 +301,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     * Client-side Streaming RPC
+     * Simple RPC
      * </pre>
      */
     public com.grpcfiles.UserOuterClass.UserResponse removeUsers(com.grpcfiles.UserOuterClass.UserRequest request) {
@@ -311,7 +311,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     *Lista de Users
+     *Server-side Streaming RPC
      * </pre>
      */
     public java.util.Iterator<com.grpcfiles.UserOuterClass.UserResponse> getUsers(
@@ -355,7 +355,7 @@ public final class UserManagementGrpc {
 
     /**
      * <pre>
-     * Client-side Streaming RPC
+     * Simple RPC
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.UserOuterClass.UserResponse> removeUsers(

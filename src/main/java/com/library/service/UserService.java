@@ -38,8 +38,6 @@ public class UserService extends UserManagementImplBase{
         responseObserver.onNext(response.build());
         //fecha a chamada
         responseObserver.onCompleted();
-
-        
     }
 
     @Override
@@ -87,7 +85,6 @@ public class UserService extends UserManagementImplBase{
         }
         responseObserver.onCompleted();
     }
-
 
 
     

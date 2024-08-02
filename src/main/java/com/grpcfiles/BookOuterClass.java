@@ -19,34 +19,39 @@ public final class BookOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string isbn = 1;</code>
+     * <code>int32 book_id = 1;</code>
      */
-    java.lang.String getIsbn();
-    /**
-     * <code>string isbn = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getIsbnBytes();
+    int getBookId();
 
     /**
-     * <code>string title = 2;</code>
+     * <code>int64 isbn = 2;</code>
+     */
+    long getIsbn();
+
+    /**
+     * <code>string title = 3;</code>
      */
     java.lang.String getTitle();
     /**
-     * <code>string title = 2;</code>
+     * <code>string title = 3;</code>
      */
     com.google.protobuf.ByteString
         getTitleBytes();
 
     /**
-     * <code>string author = 3;</code>
+     * <code>string author = 4;</code>
      */
     java.lang.String getAuthor();
     /**
-     * <code>string author = 3;</code>
+     * <code>string author = 4;</code>
      */
     com.google.protobuf.ByteString
         getAuthorBytes();
+
+    /**
+     * <code>bool isLoaned = 5;</code>
+     */
+    boolean getIsLoaned();
   }
   /**
    * <pre>
@@ -65,9 +70,11 @@ public final class BookOuterClass {
       super(builder);
     }
     private BookRequest() {
-      isbn_ = "";
+      bookId_ = 0;
+      isbn_ = 0L;
       title_ = "";
       author_ = "";
+      isLoaned_ = false;
     }
 
     @java.lang.Override
@@ -94,22 +101,31 @@ public final class BookOuterClass {
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
 
-              isbn_ = s;
+              bookId_ = input.readInt32();
               break;
             }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 16: {
 
-              title_ = s;
+              isbn_ = input.readInt64();
               break;
             }
             case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
+              title_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
               author_ = s;
+              break;
+            }
+            case 40: {
+
+              isLoaned_ = input.readBool();
               break;
             }
             default: {
@@ -144,44 +160,28 @@ public final class BookOuterClass {
               com.grpcfiles.BookOuterClass.BookRequest.class, com.grpcfiles.BookOuterClass.BookRequest.Builder.class);
     }
 
-    public static final int ISBN_FIELD_NUMBER = 1;
-    private volatile java.lang.Object isbn_;
+    public static final int BOOK_ID_FIELD_NUMBER = 1;
+    private int bookId_;
     /**
-     * <code>string isbn = 1;</code>
+     * <code>int32 book_id = 1;</code>
      */
-    public java.lang.String getIsbn() {
-      java.lang.Object ref = isbn_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        isbn_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string isbn = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getIsbnBytes() {
-      java.lang.Object ref = isbn_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        isbn_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getBookId() {
+      return bookId_;
     }
 
-    public static final int TITLE_FIELD_NUMBER = 2;
+    public static final int ISBN_FIELD_NUMBER = 2;
+    private long isbn_;
+    /**
+     * <code>int64 isbn = 2;</code>
+     */
+    public long getIsbn() {
+      return isbn_;
+    }
+
+    public static final int TITLE_FIELD_NUMBER = 3;
     private volatile java.lang.Object title_;
     /**
-     * <code>string title = 2;</code>
+     * <code>string title = 3;</code>
      */
     public java.lang.String getTitle() {
       java.lang.Object ref = title_;
@@ -196,7 +196,7 @@ public final class BookOuterClass {
       }
     }
     /**
-     * <code>string title = 2;</code>
+     * <code>string title = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTitleBytes() {
@@ -212,10 +212,10 @@ public final class BookOuterClass {
       }
     }
 
-    public static final int AUTHOR_FIELD_NUMBER = 3;
+    public static final int AUTHOR_FIELD_NUMBER = 4;
     private volatile java.lang.Object author_;
     /**
-     * <code>string author = 3;</code>
+     * <code>string author = 4;</code>
      */
     public java.lang.String getAuthor() {
       java.lang.Object ref = author_;
@@ -230,7 +230,7 @@ public final class BookOuterClass {
       }
     }
     /**
-     * <code>string author = 3;</code>
+     * <code>string author = 4;</code>
      */
     public com.google.protobuf.ByteString
         getAuthorBytes() {
@@ -244,6 +244,15 @@ public final class BookOuterClass {
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int ISLOANED_FIELD_NUMBER = 5;
+    private boolean isLoaned_;
+    /**
+     * <code>bool isLoaned = 5;</code>
+     */
+    public boolean getIsLoaned() {
+      return isLoaned_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -260,14 +269,20 @@ public final class BookOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getIsbnBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, isbn_);
+      if (bookId_ != 0) {
+        output.writeInt32(1, bookId_);
+      }
+      if (isbn_ != 0L) {
+        output.writeInt64(2, isbn_);
       }
       if (!getTitleBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, title_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, title_);
       }
       if (!getAuthorBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, author_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, author_);
+      }
+      if (isLoaned_ != false) {
+        output.writeBool(5, isLoaned_);
       }
       unknownFields.writeTo(output);
     }
@@ -278,14 +293,23 @@ public final class BookOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getIsbnBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, isbn_);
+      if (bookId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, bookId_);
+      }
+      if (isbn_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, isbn_);
       }
       if (!getTitleBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, title_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, title_);
       }
       if (!getAuthorBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, author_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, author_);
+      }
+      if (isLoaned_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, isLoaned_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -303,12 +327,16 @@ public final class BookOuterClass {
       com.grpcfiles.BookOuterClass.BookRequest other = (com.grpcfiles.BookOuterClass.BookRequest) obj;
 
       boolean result = true;
-      result = result && getIsbn()
-          .equals(other.getIsbn());
+      result = result && (getBookId()
+          == other.getBookId());
+      result = result && (getIsbn()
+          == other.getIsbn());
       result = result && getTitle()
           .equals(other.getTitle());
       result = result && getAuthor()
           .equals(other.getAuthor());
+      result = result && (getIsLoaned()
+          == other.getIsLoaned());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -320,12 +348,18 @@ public final class BookOuterClass {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getBookId();
       hash = (37 * hash) + ISBN_FIELD_NUMBER;
-      hash = (53 * hash) + getIsbn().hashCode();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getIsbn());
       hash = (37 * hash) + TITLE_FIELD_NUMBER;
       hash = (53 * hash) + getTitle().hashCode();
       hash = (37 * hash) + AUTHOR_FIELD_NUMBER;
       hash = (53 * hash) + getAuthor().hashCode();
+      hash = (37 * hash) + ISLOANED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsLoaned());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -463,11 +497,15 @@ public final class BookOuterClass {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        isbn_ = "";
+        bookId_ = 0;
+
+        isbn_ = 0L;
 
         title_ = "";
 
         author_ = "";
+
+        isLoaned_ = false;
 
         return this;
       }
@@ -495,9 +533,11 @@ public final class BookOuterClass {
       @java.lang.Override
       public com.grpcfiles.BookOuterClass.BookRequest buildPartial() {
         com.grpcfiles.BookOuterClass.BookRequest result = new com.grpcfiles.BookOuterClass.BookRequest(this);
+        result.bookId_ = bookId_;
         result.isbn_ = isbn_;
         result.title_ = title_;
         result.author_ = author_;
+        result.isLoaned_ = isLoaned_;
         onBuilt();
         return result;
       }
@@ -546,9 +586,11 @@ public final class BookOuterClass {
 
       public Builder mergeFrom(com.grpcfiles.BookOuterClass.BookRequest other) {
         if (other == com.grpcfiles.BookOuterClass.BookRequest.getDefaultInstance()) return this;
-        if (!other.getIsbn().isEmpty()) {
-          isbn_ = other.isbn_;
-          onChanged();
+        if (other.getBookId() != 0) {
+          setBookId(other.getBookId());
+        }
+        if (other.getIsbn() != 0L) {
+          setIsbn(other.getIsbn());
         }
         if (!other.getTitle().isEmpty()) {
           title_ = other.title_;
@@ -557,6 +599,9 @@ public final class BookOuterClass {
         if (!other.getAuthor().isEmpty()) {
           author_ = other.author_;
           onChanged();
+        }
+        if (other.getIsLoaned() != false) {
+          setIsLoaned(other.getIsLoaned());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -587,78 +632,61 @@ public final class BookOuterClass {
         return this;
       }
 
-      private java.lang.Object isbn_ = "";
+      private int bookId_ ;
       /**
-       * <code>string isbn = 1;</code>
+       * <code>int32 book_id = 1;</code>
        */
-      public java.lang.String getIsbn() {
-        java.lang.Object ref = isbn_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          isbn_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public int getBookId() {
+        return bookId_;
       }
       /**
-       * <code>string isbn = 1;</code>
+       * <code>int32 book_id = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getIsbnBytes() {
-        java.lang.Object ref = isbn_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          isbn_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+      public Builder setBookId(int value) {
+        
+        bookId_ = value;
+        onChanged();
+        return this;
       }
       /**
-       * <code>string isbn = 1;</code>
+       * <code>int32 book_id = 1;</code>
        */
-      public Builder setIsbn(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder clearBookId() {
+        
+        bookId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long isbn_ ;
+      /**
+       * <code>int64 isbn = 2;</code>
+       */
+      public long getIsbn() {
+        return isbn_;
+      }
+      /**
+       * <code>int64 isbn = 2;</code>
+       */
+      public Builder setIsbn(long value) {
+        
         isbn_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string isbn = 1;</code>
+       * <code>int64 isbn = 2;</code>
        */
       public Builder clearIsbn() {
         
-        isbn_ = getDefaultInstance().getIsbn();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string isbn = 1;</code>
-       */
-      public Builder setIsbnBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        isbn_ = value;
+        isbn_ = 0L;
         onChanged();
         return this;
       }
 
       private java.lang.Object title_ = "";
       /**
-       * <code>string title = 2;</code>
+       * <code>string title = 3;</code>
        */
       public java.lang.String getTitle() {
         java.lang.Object ref = title_;
@@ -673,7 +701,7 @@ public final class BookOuterClass {
         }
       }
       /**
-       * <code>string title = 2;</code>
+       * <code>string title = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTitleBytes() {
@@ -689,7 +717,7 @@ public final class BookOuterClass {
         }
       }
       /**
-       * <code>string title = 2;</code>
+       * <code>string title = 3;</code>
        */
       public Builder setTitle(
           java.lang.String value) {
@@ -702,7 +730,7 @@ public final class BookOuterClass {
         return this;
       }
       /**
-       * <code>string title = 2;</code>
+       * <code>string title = 3;</code>
        */
       public Builder clearTitle() {
         
@@ -711,7 +739,7 @@ public final class BookOuterClass {
         return this;
       }
       /**
-       * <code>string title = 2;</code>
+       * <code>string title = 3;</code>
        */
       public Builder setTitleBytes(
           com.google.protobuf.ByteString value) {
@@ -727,7 +755,7 @@ public final class BookOuterClass {
 
       private java.lang.Object author_ = "";
       /**
-       * <code>string author = 3;</code>
+       * <code>string author = 4;</code>
        */
       public java.lang.String getAuthor() {
         java.lang.Object ref = author_;
@@ -742,7 +770,7 @@ public final class BookOuterClass {
         }
       }
       /**
-       * <code>string author = 3;</code>
+       * <code>string author = 4;</code>
        */
       public com.google.protobuf.ByteString
           getAuthorBytes() {
@@ -758,7 +786,7 @@ public final class BookOuterClass {
         }
       }
       /**
-       * <code>string author = 3;</code>
+       * <code>string author = 4;</code>
        */
       public Builder setAuthor(
           java.lang.String value) {
@@ -771,7 +799,7 @@ public final class BookOuterClass {
         return this;
       }
       /**
-       * <code>string author = 3;</code>
+       * <code>string author = 4;</code>
        */
       public Builder clearAuthor() {
         
@@ -780,7 +808,7 @@ public final class BookOuterClass {
         return this;
       }
       /**
-       * <code>string author = 3;</code>
+       * <code>string author = 4;</code>
        */
       public Builder setAuthorBytes(
           com.google.protobuf.ByteString value) {
@@ -790,6 +818,32 @@ public final class BookOuterClass {
   checkByteStringIsUtf8(value);
         
         author_ = value;
+        onChanged();
+        return this;
+      }
+
+      private boolean isLoaned_ ;
+      /**
+       * <code>bool isLoaned = 5;</code>
+       */
+      public boolean getIsLoaned() {
+        return isLoaned_;
+      }
+      /**
+       * <code>bool isLoaned = 5;</code>
+       */
+      public Builder setIsLoaned(boolean value) {
+        
+        isLoaned_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isLoaned = 5;</code>
+       */
+      public Builder clearIsLoaned() {
+        
+        isLoaned_ = false;
         onChanged();
         return this;
       }
@@ -2685,15 +2739,18 @@ public final class BookOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nbook.proto\022\rcom.grpcfiles\":\n\013BookReque" +
-      "st\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n\006autho" +
-      "r\030\003 \001(\t\"\037\n\014BookResponse\022\017\n\007message\030\001 \001(\t" +
-      "\"3\n\004Book\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n" +
-      "\006author\030\003 \001(\t\"\007\n\005Empty2\216\001\n\016BookManagemen" +
-      "t\022B\n\007AddBook\022\032.com.grpcfiles.BookRequest" +
-      "\032\033.com.grpcfiles.BookResponse\0228\n\tListBoo" +
-      "ks\022\024.com.grpcfiles.Empty\032\023.com.grpcfiles" +
-      ".Book0\001b\006proto3"
+      "\n\nbook.proto\022\rcom.grpcfiles\"]\n\013BookReque" +
+      "st\022\017\n\007book_id\030\001 \001(\005\022\014\n\004isbn\030\002 \001(\003\022\r\n\005tit" +
+      "le\030\003 \001(\t\022\016\n\006author\030\004 \001(\t\022\020\n\010isLoaned\030\005 \001" +
+      "(\010\"\037\n\014BookResponse\022\017\n\007message\030\001 \001(\t\"3\n\004B" +
+      "ook\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n\006auth" +
+      "or\030\003 \001(\t\"\007\n\005Empty2\337\001\n\016BookManagement\022B\n\007" +
+      "AddBook\022\032.com.grpcfiles.BookRequest\032\033.co" +
+      "m.grpcfiles.BookResponse\022G\n\nRemoveBook\022\032" +
+      ".com.grpcfiles.BookRequest\032\033.com.grpcfil" +
+      "es.BookResponse(\001\022@\n\tListBooks\022\024.com.grp" +
+      "cfiles.Empty\032\033.com.grpcfiles.BookRespons" +
+      "e0\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2712,7 +2769,7 @@ public final class BookOuterClass {
     internal_static_com_grpcfiles_BookRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_BookRequest_descriptor,
-        new java.lang.String[] { "Isbn", "Title", "Author", });
+        new java.lang.String[] { "BookId", "Isbn", "Title", "Author", "IsLoaned", });
     internal_static_com_grpcfiles_BookResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_grpcfiles_BookResponse_fieldAccessorTable = new

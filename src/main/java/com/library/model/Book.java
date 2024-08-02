@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Book {
 
     private int id;
-    private String isbn;
+    private Long isbn;
     private String title;
     private String author;
     private boolean isLoaned;
     
-    public Book(int id, String isbn, String title, String author) {
+    public Book(int id, Long isbn, String title, String author) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -26,10 +26,10 @@ public class Book {
     public void setId(int id) {
         this.id = id;
     }
-    public String getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
-    public void setIsbn(String isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
     public String getTitle() {

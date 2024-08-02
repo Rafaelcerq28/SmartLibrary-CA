@@ -7,10 +7,10 @@ service UserManagement {
     // Simple RPC
     rpc AddUser (UserRequest) returns (UserResponse);
     
-    // Client-side Streaming RPC
+    // Simple RPC
     rpc RemoveUsers (UserRequest) returns (UserResponse);
 
-    //Lista de Users
+    //Server-side Streaming RPC
     rpc GetUsers (Empty) returns (stream UserResponse);
 }
 

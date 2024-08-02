@@ -12,9 +12,10 @@ import io.grpc.ManagedChannelBuilder;
 
 public class TestClient {
     public static void main(String[] args) {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
+        ManagedChannel userChannel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
+        
 
-        UserManagementBlockingStub userStub = UserManagementGrpc.newBlockingStub(channel);
+        UserManagementBlockingStub userStub = UserManagementGrpc.newBlockingStub(userChannel);
         // Call the user request sending a "test" as name and 1 as user Id
         
         UserRequest userRequest = UserRequest.newBuilder().
@@ -53,5 +54,6 @@ public class TestClient {
         // userRequest = UserRequest.newBuilder().setUserId(0).build();
         // response = userStub.removeUsers(userRequest);
         // System.out.println(response.getMessage());
+        
     }
 }
