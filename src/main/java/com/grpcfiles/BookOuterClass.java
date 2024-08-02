@@ -24,9 +24,14 @@ public final class BookOuterClass {
     int getBookId();
 
     /**
-     * <code>int64 isbn = 2;</code>
+     * <code>string isbn = 2;</code>
      */
-    long getIsbn();
+    java.lang.String getIsbn();
+    /**
+     * <code>string isbn = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getIsbnBytes();
 
     /**
      * <code>string title = 3;</code>
@@ -71,7 +76,7 @@ public final class BookOuterClass {
     }
     private BookRequest() {
       bookId_ = 0;
-      isbn_ = 0L;
+      isbn_ = "";
       title_ = "";
       author_ = "";
       isLoaned_ = false;
@@ -106,9 +111,10 @@ public final class BookOuterClass {
               bookId_ = input.readInt32();
               break;
             }
-            case 16: {
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              isbn_ = input.readInt64();
+              isbn_ = s;
               break;
             }
             case 26: {
@@ -170,12 +176,37 @@ public final class BookOuterClass {
     }
 
     public static final int ISBN_FIELD_NUMBER = 2;
-    private long isbn_;
+    private volatile java.lang.Object isbn_;
     /**
-     * <code>int64 isbn = 2;</code>
+     * <code>string isbn = 2;</code>
      */
-    public long getIsbn() {
-      return isbn_;
+    public java.lang.String getIsbn() {
+      java.lang.Object ref = isbn_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        isbn_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string isbn = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIsbnBytes() {
+      java.lang.Object ref = isbn_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        isbn_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int TITLE_FIELD_NUMBER = 3;
@@ -272,8 +303,8 @@ public final class BookOuterClass {
       if (bookId_ != 0) {
         output.writeInt32(1, bookId_);
       }
-      if (isbn_ != 0L) {
-        output.writeInt64(2, isbn_);
+      if (!getIsbnBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, isbn_);
       }
       if (!getTitleBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, title_);
@@ -297,9 +328,8 @@ public final class BookOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, bookId_);
       }
-      if (isbn_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, isbn_);
+      if (!getIsbnBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, isbn_);
       }
       if (!getTitleBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, title_);
@@ -329,8 +359,8 @@ public final class BookOuterClass {
       boolean result = true;
       result = result && (getBookId()
           == other.getBookId());
-      result = result && (getIsbn()
-          == other.getIsbn());
+      result = result && getIsbn()
+          .equals(other.getIsbn());
       result = result && getTitle()
           .equals(other.getTitle());
       result = result && getAuthor()
@@ -351,8 +381,7 @@ public final class BookOuterClass {
       hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
       hash = (53 * hash) + getBookId();
       hash = (37 * hash) + ISBN_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getIsbn());
+      hash = (53 * hash) + getIsbn().hashCode();
       hash = (37 * hash) + TITLE_FIELD_NUMBER;
       hash = (53 * hash) + getTitle().hashCode();
       hash = (37 * hash) + AUTHOR_FIELD_NUMBER;
@@ -499,7 +528,7 @@ public final class BookOuterClass {
         super.clear();
         bookId_ = 0;
 
-        isbn_ = 0L;
+        isbn_ = "";
 
         title_ = "";
 
@@ -589,8 +618,9 @@ public final class BookOuterClass {
         if (other.getBookId() != 0) {
           setBookId(other.getBookId());
         }
-        if (other.getIsbn() != 0L) {
-          setIsbn(other.getIsbn());
+        if (!other.getIsbn().isEmpty()) {
+          isbn_ = other.isbn_;
+          onChanged();
         }
         if (!other.getTitle().isEmpty()) {
           title_ = other.title_;
@@ -658,28 +688,71 @@ public final class BookOuterClass {
         return this;
       }
 
-      private long isbn_ ;
+      private java.lang.Object isbn_ = "";
       /**
-       * <code>int64 isbn = 2;</code>
+       * <code>string isbn = 2;</code>
        */
-      public long getIsbn() {
-        return isbn_;
+      public java.lang.String getIsbn() {
+        java.lang.Object ref = isbn_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          isbn_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>int64 isbn = 2;</code>
+       * <code>string isbn = 2;</code>
        */
-      public Builder setIsbn(long value) {
-        
+      public com.google.protobuf.ByteString
+          getIsbnBytes() {
+        java.lang.Object ref = isbn_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          isbn_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string isbn = 2;</code>
+       */
+      public Builder setIsbn(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         isbn_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 isbn = 2;</code>
+       * <code>string isbn = 2;</code>
        */
       public Builder clearIsbn() {
         
-        isbn_ = 0L;
+        isbn_ = getDefaultInstance().getIsbn();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string isbn = 2;</code>
+       */
+      public Builder setIsbnBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        isbn_ = value;
         onChanged();
         return this;
       }
@@ -2740,7 +2813,7 @@ public final class BookOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\nbook.proto\022\rcom.grpcfiles\"]\n\013BookReque" +
-      "st\022\017\n\007book_id\030\001 \001(\005\022\014\n\004isbn\030\002 \001(\003\022\r\n\005tit" +
+      "st\022\017\n\007book_id\030\001 \001(\005\022\014\n\004isbn\030\002 \001(\t\022\r\n\005tit" +
       "le\030\003 \001(\t\022\016\n\006author\030\004 \001(\t\022\020\n\010isLoaned\030\005 \001" +
       "(\010\"\037\n\014BookResponse\022\017\n\007message\030\001 \001(\t\"3\n\004B" +
       "ook\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n\006auth" +

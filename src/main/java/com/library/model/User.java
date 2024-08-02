@@ -55,8 +55,13 @@ public class User implements Comparable<Object>{
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
-    }
+        return //"User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+        String.format("ID: %-3d | Name: %-20s | Phone: %-15s | Address: %-25s",id,name,phone,address);
+    } 
 
-    
+    // @Override
+    // public String toString() {
+    //     return String.format("ID: %-3d | ISBN: %-17s | Title: %-30s | Author: %-20s | Loaned: %-5s",
+    //             id, isbn, title, author, isLoaned);
+    // }
 }

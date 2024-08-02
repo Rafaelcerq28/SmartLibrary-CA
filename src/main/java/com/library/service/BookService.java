@@ -15,11 +15,26 @@ public class BookService extends BookManagementImplBase{
 
     ArrayList<Book> books = new ArrayList<>();
 
+    
+
+    public BookService() {
+        books.add(new Book(books.size(), "978-0-345-39180-3", "The Hobbit", "J.R.R. Tolkien", true));
+        books.add(new Book(books.size(), "978-0-7432-7356-5", "The Da Vinci Code", "Dan Brown", true));
+        books.add(new Book(books.size(), "978-0-452-28423-4", "To Kill a Mockingbird", "Harper Lee", true));
+        books.add(new Book(books.size(), "978-0-06-112008-4", "1984", "George Orwell", true));
+        books.add(new Book(books.size(), "978-0-14-028329-7", "The Great Gatsby", "F. Scott Fitzgerald", true));
+        books.add(new Book(books.size(), "978-0-618-00222-8", "Harry Potter", "J.K. Rowling", true));
+        books.add(new Book(books.size(), "978-0-679-64185-5", "The Catcher in the Rye", "J.D. Salinger", true));
+        books.add(new Book(books.size(), "978-0-452-28425-8", "Brave New World", "Aldous Huxley", true));
+        books.add(new Book(books.size(), "978-0-316-76948-0", "The Girl with", "Stieg Larsson", true));
+        books.add(new Book(books.size(), "978-0-14-017739-8", "Of Mice and Men", "John Steinbeck", true));        
+    }
+
     @Override
     public void addBook(BookRequest request, StreamObserver<BookResponse> responseObserver){
         System.out.println("Chamada add book");       
         int bookId = books.size();
-        Long isbn = request.getIsbn();
+        String isbn = request.getIsbn();
         String title = request.getTitle();
         String author = request.getAuthor();
         boolean isLoaned = false;

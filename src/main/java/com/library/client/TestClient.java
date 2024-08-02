@@ -1,6 +1,5 @@
 package com.library.client;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import com.grpcfiles.UserManagementGrpc;
 import com.grpcfiles.UserManagementGrpc.UserManagementBlockingStub;
@@ -42,7 +41,7 @@ public class TestClient {
         //end second user 
 
         //showing the list of users
-        System.out.println("\n List of user");
+        System.out.println("\nList of user");
         java.util.Iterator<UserResponse> responseList = userStub.getUsers(null);
         //iterates my iteratos to return a list os users
         while (responseList.hasNext()) {
@@ -50,10 +49,10 @@ public class TestClient {
         }
         
 
-        // //to remove user
-        // userRequest = UserRequest.newBuilder().setUserId(0).build();
-        // response = userStub.removeUsers(userRequest);
-        // System.out.println(response.getMessage());
+        //to remove user
+        userRequest = UserRequest.newBuilder().setUserId(0).build();
+        response = userStub.removeUsers(userRequest);
+        System.out.println(response.getMessage());
         
     }
 }

@@ -5,16 +5,24 @@ import java.util.ArrayList;
 public class Book {
 
     private int id;
-    private Long isbn;
+    private String isbn;
     private String title;
     private String author;
     private boolean isLoaned;
     
-    public Book(int id, Long isbn, String title, String author) {
+    public Book(int id, String isbn, String title, String author) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+    }
+
+    public Book(int id, String isbn, String title, String author, boolean isLoaned) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.isLoaned = isLoaned;
     }
 
     public Book() {
@@ -26,10 +34,10 @@ public class Book {
     public void setId(int id) {
         this.id = id;
     }
-    public Long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
-    public void setIsbn(Long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
     public String getTitle() {
@@ -53,8 +61,8 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", isLoaned="
-                + isLoaned + "]";
+        return String.format("ID: %-3d | ISBN: %-17s | Title: %-30s | Author: %-20s | Loaned: %-5s",
+                id, isbn, title, author, isLoaned);
     }
 
     
