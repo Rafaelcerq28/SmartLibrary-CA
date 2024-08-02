@@ -26,11 +26,7 @@ public class TestClientBook {
 
    ManagedChannel bookChannel = ManagedChannelBuilder.forAddress("localhost", 9091).usePlaintext().build();
     BookManagementBlockingStub bookStub = BookManagementGrpc.newBlockingStub(bookChannel);
-
-        // private static StringsServiceGrpc.StringsServiceBlockingStub blockingStub;
-        // // Asynch stub
-        // private static StringsServiceGrpc.StringsServiceStub asyncStub;
-        
+      
         //building my book
         BookRequest bookRequest = BookRequest.newBuilder().
                                                 setIsbn(123123).
@@ -72,6 +68,11 @@ public class TestClientBook {
         while (responseList.hasNext()) {
             System.out.println(responseList.next().getMessage());    
         }
+
+        //to remove user
+        bookRequest = bookRequest.newBuilder().setBookId(0).build();
+        bookResponse = bookStub.removeBook(bookRequest);
+        System.out.println(bookResponse.getMessage());
 
     }
 
