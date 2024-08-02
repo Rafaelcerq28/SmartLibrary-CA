@@ -66,7 +66,7 @@ public final class BookManagementGrpc {
       fullMethodName = SERVICE_NAME + '/' + "RemoveBook",
       requestType = com.grpcfiles.BookOuterClass.BookRequest.class,
       responseType = com.grpcfiles.BookOuterClass.BookResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.BookRequest,
       com.grpcfiles.BookOuterClass.BookResponse> getRemoveBookMethod() {
     io.grpc.MethodDescriptor<com.grpcfiles.BookOuterClass.BookRequest, com.grpcfiles.BookOuterClass.BookResponse> getRemoveBookMethod;
@@ -75,7 +75,7 @@ public final class BookManagementGrpc {
         if ((getRemoveBookMethod = BookManagementGrpc.getRemoveBookMethod) == null) {
           BookManagementGrpc.getRemoveBookMethod = getRemoveBookMethod = 
               io.grpc.MethodDescriptor.<com.grpcfiles.BookOuterClass.BookRequest, com.grpcfiles.BookOuterClass.BookResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "com.grpcfiles.BookManagement", "RemoveBook"))
               .setSampledToLocalTracing(true)
@@ -165,9 +165,9 @@ public final class BookManagementGrpc {
      *Client side stream to remove books RPC
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookRequest> removeBook(
+    public void removeBook(com.grpcfiles.BookOuterClass.BookRequest request,
         io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getRemoveBookMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getRemoveBookMethod(), responseObserver);
     }
 
     /**
@@ -191,7 +191,7 @@ public final class BookManagementGrpc {
                   this, METHODID_ADD_BOOK)))
           .addMethod(
             getRemoveBookMethod(),
-            asyncClientStreamingCall(
+            asyncUnaryCall(
               new MethodHandlers<
                 com.grpcfiles.BookOuterClass.BookRequest,
                 com.grpcfiles.BookOuterClass.BookResponse>(
@@ -241,10 +241,10 @@ public final class BookManagementGrpc {
      *Client side stream to remove books RPC
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookRequest> removeBook(
+    public void removeBook(com.grpcfiles.BookOuterClass.BookRequest request,
         io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getRemoveBookMethod(), getCallOptions()), responseObserver);
+      asyncUnaryCall(
+          getChannel().newCall(getRemoveBookMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -289,6 +289,16 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
+     *Client side stream to remove books RPC
+     * </pre>
+     */
+    public com.grpcfiles.BookOuterClass.BookResponse removeBook(com.grpcfiles.BookOuterClass.BookRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRemoveBookMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
      * Server-side Streaming RPC
      * </pre>
      */
@@ -327,11 +337,22 @@ public final class BookManagementGrpc {
       return futureUnaryCall(
           getChannel().newCall(getAddBookMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *Client side stream to remove books RPC
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.BookOuterClass.BookResponse> removeBook(
+        com.grpcfiles.BookOuterClass.BookRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRemoveBookMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_ADD_BOOK = 0;
-  private static final int METHODID_LIST_BOOKS = 1;
-  private static final int METHODID_REMOVE_BOOK = 2;
+  private static final int METHODID_REMOVE_BOOK = 1;
+  private static final int METHODID_LIST_BOOKS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -354,6 +375,10 @@ public final class BookManagementGrpc {
           serviceImpl.addBook((com.grpcfiles.BookOuterClass.BookRequest) request,
               (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse>) responseObserver);
           break;
+        case METHODID_REMOVE_BOOK:
+          serviceImpl.removeBook((com.grpcfiles.BookOuterClass.BookRequest) request,
+              (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse>) responseObserver);
+          break;
         case METHODID_LIST_BOOKS:
           serviceImpl.listBooks((com.grpcfiles.BookOuterClass.Empty) request,
               (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse>) responseObserver);
@@ -368,9 +393,6 @@ public final class BookManagementGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_REMOVE_BOOK:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.removeBook(
-              (io.grpc.stub.StreamObserver<com.grpcfiles.BookOuterClass.BookResponse>) responseObserver);
         default:
           throw new AssertionError();
       }

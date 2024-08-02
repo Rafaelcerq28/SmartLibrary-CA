@@ -2744,13 +2744,13 @@ public final class BookOuterClass {
       "le\030\003 \001(\t\022\016\n\006author\030\004 \001(\t\022\020\n\010isLoaned\030\005 \001" +
       "(\010\"\037\n\014BookResponse\022\017\n\007message\030\001 \001(\t\"3\n\004B" +
       "ook\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n\006auth" +
-      "or\030\003 \001(\t\"\007\n\005Empty2\337\001\n\016BookManagement\022B\n\007" +
+      "or\030\003 \001(\t\"\007\n\005Empty2\335\001\n\016BookManagement\022B\n\007" +
       "AddBook\022\032.com.grpcfiles.BookRequest\032\033.co" +
-      "m.grpcfiles.BookResponse\022G\n\nRemoveBook\022\032" +
+      "m.grpcfiles.BookResponse\022E\n\nRemoveBook\022\032" +
       ".com.grpcfiles.BookRequest\032\033.com.grpcfil" +
-      "es.BookResponse(\001\022@\n\tListBooks\022\024.com.grp" +
-      "cfiles.Empty\032\033.com.grpcfiles.BookRespons" +
-      "e0\001b\006proto3"
+      "es.BookResponse\022@\n\tListBooks\022\024.com.grpcf" +
+      "iles.Empty\032\033.com.grpcfiles.BookResponse0" +
+      "\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

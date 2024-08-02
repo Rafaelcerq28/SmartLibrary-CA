@@ -7,7 +7,7 @@ service BookManagement {
     rpc AddBook (BookRequest) returns (BookResponse);
     
     //Client side stream to remove books RPC
-    rpc RemoveBook (stream BookRequest) returns (BookResponse);
+    rpc RemoveBook (BookRequest) returns (BookResponse);
 
     // Server-side Streaming RPC
     rpc ListBooks (Empty) returns (stream BookResponse);
