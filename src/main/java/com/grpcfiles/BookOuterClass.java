@@ -973,6 +973,546 @@ public final class BookOuterClass {
 
   }
 
+  public interface BookStatusRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:com.grpcfiles.BookStatusRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool isLoaned = 1;</code>
+     */
+    boolean getIsLoaned();
+
+    /**
+     * <code>int32 book_id = 2;</code>
+     */
+    int getBookId();
+  }
+  /**
+   * Protobuf type {@code com.grpcfiles.BookStatusRequest}
+   */
+  public  static final class BookStatusRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:com.grpcfiles.BookStatusRequest)
+      BookStatusRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BookStatusRequest.newBuilder() to construct.
+    private BookStatusRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BookStatusRequest() {
+      isLoaned_ = false;
+      bookId_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private BookStatusRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              isLoaned_ = input.readBool();
+              break;
+            }
+            case 16: {
+
+              bookId_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.grpcfiles.BookOuterClass.internal_static_com_grpcfiles_BookStatusRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.grpcfiles.BookOuterClass.internal_static_com_grpcfiles_BookStatusRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.grpcfiles.BookOuterClass.BookStatusRequest.class, com.grpcfiles.BookOuterClass.BookStatusRequest.Builder.class);
+    }
+
+    public static final int ISLOANED_FIELD_NUMBER = 1;
+    private boolean isLoaned_;
+    /**
+     * <code>bool isLoaned = 1;</code>
+     */
+    public boolean getIsLoaned() {
+      return isLoaned_;
+    }
+
+    public static final int BOOK_ID_FIELD_NUMBER = 2;
+    private int bookId_;
+    /**
+     * <code>int32 book_id = 2;</code>
+     */
+    public int getBookId() {
+      return bookId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (isLoaned_ != false) {
+        output.writeBool(1, isLoaned_);
+      }
+      if (bookId_ != 0) {
+        output.writeInt32(2, bookId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (isLoaned_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, isLoaned_);
+      }
+      if (bookId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, bookId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.grpcfiles.BookOuterClass.BookStatusRequest)) {
+        return super.equals(obj);
+      }
+      com.grpcfiles.BookOuterClass.BookStatusRequest other = (com.grpcfiles.BookOuterClass.BookStatusRequest) obj;
+
+      boolean result = true;
+      result = result && (getIsLoaned()
+          == other.getIsLoaned());
+      result = result && (getBookId()
+          == other.getBookId());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ISLOANED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsLoaned());
+      hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getBookId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.grpcfiles.BookOuterClass.BookStatusRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code com.grpcfiles.BookStatusRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:com.grpcfiles.BookStatusRequest)
+        com.grpcfiles.BookOuterClass.BookStatusRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.grpcfiles.BookOuterClass.internal_static_com_grpcfiles_BookStatusRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.grpcfiles.BookOuterClass.internal_static_com_grpcfiles_BookStatusRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.grpcfiles.BookOuterClass.BookStatusRequest.class, com.grpcfiles.BookOuterClass.BookStatusRequest.Builder.class);
+      }
+
+      // Construct using com.grpcfiles.BookOuterClass.BookStatusRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        isLoaned_ = false;
+
+        bookId_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.grpcfiles.BookOuterClass.internal_static_com_grpcfiles_BookStatusRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.grpcfiles.BookOuterClass.BookStatusRequest getDefaultInstanceForType() {
+        return com.grpcfiles.BookOuterClass.BookStatusRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.grpcfiles.BookOuterClass.BookStatusRequest build() {
+        com.grpcfiles.BookOuterClass.BookStatusRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.grpcfiles.BookOuterClass.BookStatusRequest buildPartial() {
+        com.grpcfiles.BookOuterClass.BookStatusRequest result = new com.grpcfiles.BookOuterClass.BookStatusRequest(this);
+        result.isLoaned_ = isLoaned_;
+        result.bookId_ = bookId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.grpcfiles.BookOuterClass.BookStatusRequest) {
+          return mergeFrom((com.grpcfiles.BookOuterClass.BookStatusRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.grpcfiles.BookOuterClass.BookStatusRequest other) {
+        if (other == com.grpcfiles.BookOuterClass.BookStatusRequest.getDefaultInstance()) return this;
+        if (other.getIsLoaned() != false) {
+          setIsLoaned(other.getIsLoaned());
+        }
+        if (other.getBookId() != 0) {
+          setBookId(other.getBookId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.grpcfiles.BookOuterClass.BookStatusRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.grpcfiles.BookOuterClass.BookStatusRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private boolean isLoaned_ ;
+      /**
+       * <code>bool isLoaned = 1;</code>
+       */
+      public boolean getIsLoaned() {
+        return isLoaned_;
+      }
+      /**
+       * <code>bool isLoaned = 1;</code>
+       */
+      public Builder setIsLoaned(boolean value) {
+        
+        isLoaned_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isLoaned = 1;</code>
+       */
+      public Builder clearIsLoaned() {
+        
+        isLoaned_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int bookId_ ;
+      /**
+       * <code>int32 book_id = 2;</code>
+       */
+      public int getBookId() {
+        return bookId_;
+      }
+      /**
+       * <code>int32 book_id = 2;</code>
+       */
+      public Builder setBookId(int value) {
+        
+        bookId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 book_id = 2;</code>
+       */
+      public Builder clearBookId() {
+        
+        bookId_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.grpcfiles.BookStatusRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.grpcfiles.BookStatusRequest)
+    private static final com.grpcfiles.BookOuterClass.BookStatusRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.grpcfiles.BookOuterClass.BookStatusRequest();
+    }
+
+    public static com.grpcfiles.BookOuterClass.BookStatusRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BookStatusRequest>
+        PARSER = new com.google.protobuf.AbstractParser<BookStatusRequest>() {
+      @java.lang.Override
+      public BookStatusRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new BookStatusRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<BookStatusRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BookStatusRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.grpcfiles.BookOuterClass.BookStatusRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface BookResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:com.grpcfiles.BookResponse)
       com.google.protobuf.MessageOrBuilder {
@@ -2789,6 +3329,11 @@ public final class BookOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_grpcfiles_BookRequest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_grpcfiles_BookStatusRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_grpcfiles_BookStatusRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_grpcfiles_BookResponse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2815,15 +3360,18 @@ public final class BookOuterClass {
       "\n\nbook.proto\022\rcom.grpcfiles\"]\n\013BookReque" +
       "st\022\017\n\007book_id\030\001 \001(\005\022\014\n\004isbn\030\002 \001(\t\022\r\n\005tit" +
       "le\030\003 \001(\t\022\016\n\006author\030\004 \001(\t\022\020\n\010isLoaned\030\005 \001" +
-      "(\010\"\037\n\014BookResponse\022\017\n\007message\030\001 \001(\t\"3\n\004B" +
-      "ook\022\014\n\004isbn\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\016\n\006auth" +
-      "or\030\003 \001(\t\"\007\n\005Empty2\335\001\n\016BookManagement\022B\n\007" +
-      "AddBook\022\032.com.grpcfiles.BookRequest\032\033.co" +
-      "m.grpcfiles.BookResponse\022E\n\nRemoveBook\022\032" +
-      ".com.grpcfiles.BookRequest\032\033.com.grpcfil" +
-      "es.BookResponse\022@\n\tListBooks\022\024.com.grpcf" +
-      "iles.Empty\032\033.com.grpcfiles.BookResponse0" +
-      "\001b\006proto3"
+      "(\010\"6\n\021BookStatusRequest\022\020\n\010isLoaned\030\001 \001(" +
+      "\010\022\017\n\007book_id\030\002 \001(\005\"\037\n\014BookResponse\022\017\n\007me" +
+      "ssage\030\001 \001(\t\"3\n\004Book\022\014\n\004isbn\030\001 \001(\t\022\r\n\005tit" +
+      "le\030\002 \001(\t\022\016\n\006author\030\003 \001(\t\"\007\n\005Empty2\257\002\n\016Bo" +
+      "okManagement\022B\n\007AddBook\022\032.com.grpcfiles." +
+      "BookRequest\032\033.com.grpcfiles.BookResponse" +
+      "\022E\n\nRemoveBook\022\032.com.grpcfiles.BookReque" +
+      "st\032\033.com.grpcfiles.BookResponse\022P\n\017BookT" +
+      "ransaction\022 .com.grpcfiles.BookStatusReq" +
+      "uest\032\033.com.grpcfiles.BookResponse\022@\n\tLis" +
+      "tBooks\022\024.com.grpcfiles.Empty\032\033.com.grpcf" +
+      "iles.BookResponse0\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2843,20 +3391,26 @@ public final class BookOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_BookRequest_descriptor,
         new java.lang.String[] { "BookId", "Isbn", "Title", "Author", "IsLoaned", });
-    internal_static_com_grpcfiles_BookResponse_descriptor =
+    internal_static_com_grpcfiles_BookStatusRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_com_grpcfiles_BookStatusRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_grpcfiles_BookStatusRequest_descriptor,
+        new java.lang.String[] { "IsLoaned", "BookId", });
+    internal_static_com_grpcfiles_BookResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_com_grpcfiles_BookResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_BookResponse_descriptor,
         new java.lang.String[] { "Message", });
     internal_static_com_grpcfiles_Book_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_com_grpcfiles_Book_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_Book_descriptor,
         new java.lang.String[] { "Isbn", "Title", "Author", });
     internal_static_com_grpcfiles_Empty_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_com_grpcfiles_Empty_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_Empty_descriptor,

@@ -4,20 +4,21 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.library.service.BookService;
+import com.library.service.LibraryService;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
-public class BookServer {
+public class LibraryServer {
     public static void main(String[] args) throws IOException, InterruptedException {
-        int port = 9091;
-        Logger logger = Logger.getLogger(BookServer.class.getName());
+        int port = 9092;
+        Logger logger = Logger.getLogger(LibraryServer.class.getName());
         //Criando nosso server chamando o server builder e
         // setando uma porta para o servidor e 
         // adicionando o serviço que esse servidor vai iniciar
         Server server = ServerBuilder.
-                    forPort(9091).
-                    addService(new BookService()).
+                    forPort(9092).
+                    addService(new LibraryService()).
                     build();  
 
         //Dando start no servidor (essa parte pede para lançar uma exeção)

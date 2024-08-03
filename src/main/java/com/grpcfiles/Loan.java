@@ -19,24 +19,34 @@ public final class Loan {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string user_id = 1;</code>
+     * <code>int32 user_id = 1;</code>
      */
-    java.lang.String getUserId();
-    /**
-     * <code>string user_id = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getUserIdBytes();
+    int getUserId();
 
     /**
-     * <code>string isbn = 2;</code>
+     * <code>int32 book_id = 2;</code>
      */
-    java.lang.String getIsbn();
+    int getBookId();
+
     /**
-     * <code>string isbn = 2;</code>
+     * <code>string bookName = 3;</code>
+     */
+    java.lang.String getBookName();
+    /**
+     * <code>string bookName = 3;</code>
      */
     com.google.protobuf.ByteString
-        getIsbnBytes();
+        getBookNameBytes();
+
+    /**
+     * <code>string userName = 4;</code>
+     */
+    java.lang.String getUserName();
+    /**
+     * <code>string userName = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserNameBytes();
   }
   /**
    * <pre>
@@ -55,8 +65,10 @@ public final class Loan {
       super(builder);
     }
     private LoanRequest() {
-      userId_ = "";
-      isbn_ = "";
+      userId_ = 0;
+      bookId_ = 0;
+      bookName_ = "";
+      userName_ = "";
     }
 
     @java.lang.Override
@@ -83,16 +95,26 @@ public final class Loan {
             case 0:
               done = true;
               break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
 
-              userId_ = s;
+              userId_ = input.readInt32();
               break;
             }
-            case 18: {
+            case 16: {
+
+              bookId_ = input.readInt32();
+              break;
+            }
+            case 26: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              isbn_ = s;
+              bookName_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              userName_ = s;
               break;
             }
             default: {
@@ -128,67 +150,85 @@ public final class Loan {
     }
 
     public static final int USER_ID_FIELD_NUMBER = 1;
-    private volatile java.lang.Object userId_;
+    private int userId_;
     /**
-     * <code>string user_id = 1;</code>
+     * <code>int32 user_id = 1;</code>
      */
-    public java.lang.String getUserId() {
-      java.lang.Object ref = userId_;
+    public int getUserId() {
+      return userId_;
+    }
+
+    public static final int BOOK_ID_FIELD_NUMBER = 2;
+    private int bookId_;
+    /**
+     * <code>int32 book_id = 2;</code>
+     */
+    public int getBookId() {
+      return bookId_;
+    }
+
+    public static final int BOOKNAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object bookName_;
+    /**
+     * <code>string bookName = 3;</code>
+     */
+    public java.lang.String getBookName() {
+      java.lang.Object ref = bookName_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        userId_ = s;
+        bookName_ = s;
         return s;
       }
     }
     /**
-     * <code>string user_id = 1;</code>
+     * <code>string bookName = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getUserIdBytes() {
-      java.lang.Object ref = userId_;
+        getBookNameBytes() {
+      java.lang.Object ref = bookName_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        userId_ = b;
+        bookName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int ISBN_FIELD_NUMBER = 2;
-    private volatile java.lang.Object isbn_;
+    public static final int USERNAME_FIELD_NUMBER = 4;
+    private volatile java.lang.Object userName_;
     /**
-     * <code>string isbn = 2;</code>
+     * <code>string userName = 4;</code>
      */
-    public java.lang.String getIsbn() {
-      java.lang.Object ref = isbn_;
+    public java.lang.String getUserName() {
+      java.lang.Object ref = userName_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        isbn_ = s;
+        userName_ = s;
         return s;
       }
     }
     /**
-     * <code>string isbn = 2;</code>
+     * <code>string userName = 4;</code>
      */
     public com.google.protobuf.ByteString
-        getIsbnBytes() {
-      java.lang.Object ref = isbn_;
+        getUserNameBytes() {
+      java.lang.Object ref = userName_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        isbn_ = b;
+        userName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -209,11 +249,17 @@ public final class Loan {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getUserIdBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, userId_);
+      if (userId_ != 0) {
+        output.writeInt32(1, userId_);
       }
-      if (!getIsbnBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, isbn_);
+      if (bookId_ != 0) {
+        output.writeInt32(2, bookId_);
+      }
+      if (!getBookNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, bookName_);
+      }
+      if (!getUserNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, userName_);
       }
       unknownFields.writeTo(output);
     }
@@ -224,11 +270,19 @@ public final class Loan {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUserIdBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, userId_);
+      if (userId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, userId_);
       }
-      if (!getIsbnBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, isbn_);
+      if (bookId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, bookId_);
+      }
+      if (!getBookNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, bookName_);
+      }
+      if (!getUserNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, userName_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -246,10 +300,14 @@ public final class Loan {
       com.grpcfiles.Loan.LoanRequest other = (com.grpcfiles.Loan.LoanRequest) obj;
 
       boolean result = true;
-      result = result && getUserId()
-          .equals(other.getUserId());
-      result = result && getIsbn()
-          .equals(other.getIsbn());
+      result = result && (getUserId()
+          == other.getUserId());
+      result = result && (getBookId()
+          == other.getBookId());
+      result = result && getBookName()
+          .equals(other.getBookName());
+      result = result && getUserName()
+          .equals(other.getUserName());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -262,9 +320,13 @@ public final class Loan {
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + USER_ID_FIELD_NUMBER;
-      hash = (53 * hash) + getUserId().hashCode();
-      hash = (37 * hash) + ISBN_FIELD_NUMBER;
-      hash = (53 * hash) + getIsbn().hashCode();
+      hash = (53 * hash) + getUserId();
+      hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
+      hash = (53 * hash) + getBookId();
+      hash = (37 * hash) + BOOKNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getBookName().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUserName().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -402,9 +464,13 @@ public final class Loan {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        userId_ = "";
+        userId_ = 0;
 
-        isbn_ = "";
+        bookId_ = 0;
+
+        bookName_ = "";
+
+        userName_ = "";
 
         return this;
       }
@@ -433,7 +499,9 @@ public final class Loan {
       public com.grpcfiles.Loan.LoanRequest buildPartial() {
         com.grpcfiles.Loan.LoanRequest result = new com.grpcfiles.Loan.LoanRequest(this);
         result.userId_ = userId_;
-        result.isbn_ = isbn_;
+        result.bookId_ = bookId_;
+        result.bookName_ = bookName_;
+        result.userName_ = userName_;
         onBuilt();
         return result;
       }
@@ -482,12 +550,18 @@ public final class Loan {
 
       public Builder mergeFrom(com.grpcfiles.Loan.LoanRequest other) {
         if (other == com.grpcfiles.Loan.LoanRequest.getDefaultInstance()) return this;
-        if (!other.getUserId().isEmpty()) {
-          userId_ = other.userId_;
+        if (other.getUserId() != 0) {
+          setUserId(other.getUserId());
+        }
+        if (other.getBookId() != 0) {
+          setBookId(other.getBookId());
+        }
+        if (!other.getBookName().isEmpty()) {
+          bookName_ = other.bookName_;
           onChanged();
         }
-        if (!other.getIsbn().isEmpty()) {
-          isbn_ = other.isbn_;
+        if (!other.getUserName().isEmpty()) {
+          userName_ = other.userName_;
           onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -519,140 +593,192 @@ public final class Loan {
         return this;
       }
 
-      private java.lang.Object userId_ = "";
+      private int userId_ ;
       /**
-       * <code>string user_id = 1;</code>
+       * <code>int32 user_id = 1;</code>
        */
-      public java.lang.String getUserId() {
-        java.lang.Object ref = userId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          userId_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      public int getUserId() {
+        return userId_;
       }
       /**
-       * <code>string user_id = 1;</code>
+       * <code>int32 user_id = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getUserIdBytes() {
-        java.lang.Object ref = userId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string user_id = 1;</code>
-       */
-      public Builder setUserId(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
+      public Builder setUserId(int value) {
+        
         userId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string user_id = 1;</code>
+       * <code>int32 user_id = 1;</code>
        */
       public Builder clearUserId() {
         
-        userId_ = getDefaultInstance().getUserId();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string user_id = 1;</code>
-       */
-      public Builder setUserIdBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        userId_ = value;
+        userId_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object isbn_ = "";
+      private int bookId_ ;
       /**
-       * <code>string isbn = 2;</code>
+       * <code>int32 book_id = 2;</code>
        */
-      public java.lang.String getIsbn() {
-        java.lang.Object ref = isbn_;
+      public int getBookId() {
+        return bookId_;
+      }
+      /**
+       * <code>int32 book_id = 2;</code>
+       */
+      public Builder setBookId(int value) {
+        
+        bookId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 book_id = 2;</code>
+       */
+      public Builder clearBookId() {
+        
+        bookId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object bookName_ = "";
+      /**
+       * <code>string bookName = 3;</code>
+       */
+      public java.lang.String getBookName() {
+        java.lang.Object ref = bookName_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          isbn_ = s;
+          bookName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string isbn = 2;</code>
+       * <code>string bookName = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getIsbnBytes() {
-        java.lang.Object ref = isbn_;
+          getBookNameBytes() {
+        java.lang.Object ref = bookName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          isbn_ = b;
+          bookName_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string isbn = 2;</code>
+       * <code>string bookName = 3;</code>
        */
-      public Builder setIsbn(
+      public Builder setBookName(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        isbn_ = value;
+        bookName_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string isbn = 2;</code>
+       * <code>string bookName = 3;</code>
        */
-      public Builder clearIsbn() {
+      public Builder clearBookName() {
         
-        isbn_ = getDefaultInstance().getIsbn();
+        bookName_ = getDefaultInstance().getBookName();
         onChanged();
         return this;
       }
       /**
-       * <code>string isbn = 2;</code>
+       * <code>string bookName = 3;</code>
        */
-      public Builder setIsbnBytes(
+      public Builder setBookNameBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        isbn_ = value;
+        bookName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object userName_ = "";
+      /**
+       * <code>string userName = 4;</code>
+       */
+      public java.lang.String getUserName() {
+        java.lang.Object ref = userName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          userName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string userName = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserNameBytes() {
+        java.lang.Object ref = userName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          userName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string userName = 4;</code>
+       */
+      public Builder setUserName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        userName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string userName = 4;</code>
+       */
+      public Builder clearUserName() {
+        
+        userName_ = getDefaultInstance().getUserName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string userName = 4;</code>
+       */
+      public Builder setUserNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        userName_ = value;
         onChanged();
         return this;
       }
@@ -1756,16 +1882,16 @@ public final class Loan {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nloan.proto\022\rcom.grpcfiles\",\n\013LoanReque" +
-      "st\022\017\n\007user_id\030\001 \001(\t\022\014\n\004isbn\030\002 \001(\t\"\037\n\014Loa" +
-      "nResponse\022\017\n\007message\030\001 \001(\t\"\007\n\005Empty2\353\001\n\016" +
-      "LoanManagement\022E\n\nBorrowBook\022\032.com.grpcf" +
-      "iles.LoanRequest\032\033.com.grpcfiles.LoanRes" +
-      "ponse\022E\n\nReturnBook\022\032.com.grpcfiles.Loan" +
-      "Request\032\033.com.grpcfiles.LoanResponse\022K\n\014" +
-      "MonitorLoans\022\032.com.grpcfiles.LoanRequest" +
-      "\032\033.com.grpcfiles.LoanResponse(\0010\001b\006proto" +
-      "3"
+      "\n\nloan.proto\022\rcom.grpcfiles\"S\n\013LoanReque" +
+      "st\022\017\n\007user_id\030\001 \001(\005\022\017\n\007book_id\030\002 \001(\005\022\020\n\010" +
+      "bookName\030\003 \001(\t\022\020\n\010userName\030\004 \001(\t\"\037\n\014Loan" +
+      "Response\022\017\n\007message\030\001 \001(\t\"\007\n\005Empty2\343\001\n\016L" +
+      "oanManagement\022E\n\nBorrowBook\022\032.com.grpcfi" +
+      "les.LoanRequest\032\033.com.grpcfiles.LoanResp" +
+      "onse\022E\n\nReturnBook\022\032.com.grpcfiles.LoanR" +
+      "equest\032\033.com.grpcfiles.LoanResponse\022C\n\014M" +
+      "onitorLoans\022\024.com.grpcfiles.Empty\032\033.com." +
+      "grpcfiles.LoanResponse0\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1784,7 +1910,7 @@ public final class Loan {
     internal_static_com_grpcfiles_LoanRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_grpcfiles_LoanRequest_descriptor,
-        new java.lang.String[] { "UserId", "Isbn", });
+        new java.lang.String[] { "UserId", "BookId", "BookName", "UserName", });
     internal_static_com_grpcfiles_LoanResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_grpcfiles_LoanResponse_fieldAccessorTable = new

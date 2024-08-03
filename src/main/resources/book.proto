@@ -9,6 +9,9 @@ service BookManagement {
     //Client side stream to remove books RPC
     rpc RemoveBook (BookRequest) returns (BookResponse);
 
+    //Client side stream to remove books RPC
+    rpc BookTransaction (BookStatusRequest) returns (BookResponse);
+
     // Server-side Streaming RPC
     rpc ListBooks (Empty) returns (stream BookResponse);
 }
@@ -20,6 +23,11 @@ message BookRequest {
     string title = 3;
     string author = 4;
     bool isLoaned = 5;
+}
+
+message BookStatusRequest{
+    bool isLoaned = 1;
+    int32 book_id = 2;
 }
 
 // Mensagem de resposta para operações de livro

@@ -11,13 +11,15 @@ service LoanManagement {
     rpc ReturnBook (LoanRequest) returns (LoanResponse);
     
     // Bidirectional Streaming RPC
-    rpc MonitorLoans (stream LoanRequest) returns (stream LoanResponse);
+    rpc MonitorLoans (Empty) returns (stream LoanResponse);
 }
 
 // Mensagem para operações de empréstimo de livros
 message LoanRequest {
-    string user_id = 1;
-    string isbn = 2;
+    int32 user_id = 1;
+    int32 book_id = 2;
+    string bookName = 3;
+    string userName = 4;
 }
 
 // Mensagem de resposta para operações de empréstimo de livros

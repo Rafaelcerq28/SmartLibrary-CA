@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.grpcfiles.BookManagementGrpc.BookManagementImplBase;
 import com.grpcfiles.BookOuterClass.BookRequest;
 import com.grpcfiles.BookOuterClass.BookResponse;
+import com.grpcfiles.BookOuterClass.BookStatusRequest;
 import com.grpcfiles.BookOuterClass.Empty;
 import com.grpcfiles.UserOuterClass.UserResponse;
 import com.library.model.Book;
@@ -18,16 +19,16 @@ public class BookService extends BookManagementImplBase{
     
 
     public BookService() {
-        books.add(new Book(books.size(), "978-0-345-39180-3", "The Hobbit", "J.R.R. Tolkien", true));
-        books.add(new Book(books.size(), "978-0-7432-7356-5", "The Da Vinci Code", "Dan Brown", true));
-        books.add(new Book(books.size(), "978-0-452-28423-4", "To Kill a Mockingbird", "Harper Lee", true));
-        books.add(new Book(books.size(), "978-0-06-112008-4", "1984", "George Orwell", true));
-        books.add(new Book(books.size(), "978-0-14-028329-7", "The Great Gatsby", "F. Scott Fitzgerald", true));
-        books.add(new Book(books.size(), "978-0-618-00222-8", "Harry Potter", "J.K. Rowling", true));
-        books.add(new Book(books.size(), "978-0-679-64185-5", "The Catcher in the Rye", "J.D. Salinger", true));
-        books.add(new Book(books.size(), "978-0-452-28425-8", "Brave New World", "Aldous Huxley", true));
-        books.add(new Book(books.size(), "978-0-316-76948-0", "The Girl with", "Stieg Larsson", true));
-        books.add(new Book(books.size(), "978-0-14-017739-8", "Of Mice and Men", "John Steinbeck", true));        
+        books.add(new Book(books.size(), "978-0-345-39180-3", "The Hobbit", "J.R.R. Tolkien", false));
+        books.add(new Book(books.size(), "978-0-7432-7356-5", "The Da Vinci Code", "Dan Brown", false));
+        books.add(new Book(books.size(), "978-0-452-28423-4", "To Kill a Mockingbird", "Harper Lee", false));
+        books.add(new Book(books.size(), "978-0-06-112008-4", "1984", "George Orwell", false));
+        books.add(new Book(books.size(), "978-0-14-028329-7", "The Great Gatsby", "F. Scott Fitzgerald", false));
+        books.add(new Book(books.size(), "978-0-618-00222-8", "Harry Potter", "J.K. Rowling", false));
+        books.add(new Book(books.size(), "978-0-679-64185-5", "The Catcher in the Rye", "J.D. Salinger", false));
+        books.add(new Book(books.size(), "978-0-452-28425-8", "Brave New World", "Aldous Huxley", false));
+        books.add(new Book(books.size(), "978-0-316-76948-0", "The Girl with", "Stieg Larsson", false));
+        books.add(new Book(books.size(), "978-0-14-017739-8", "Of Mice and Men", "John Steinbeck", false));        
     }
 
     @Override
@@ -89,6 +90,43 @@ public class BookService extends BookManagementImplBase{
             response.setMessage("user not found");  
         }
         
+        responseObserver.onNext(response.build());
+        //fecha a chamada
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void bookTransaction(BookStatusRequest request, StreamObserver<BookResponse> responseObserver) {
+        System.out.println("bookTransaction");
+        boolean isLoaned = request.getIsLoaned();
+        int bookId = request.getBookId();
+        String message = "book status updated";
+        int position = 0;
+        boolean found = false;
+
+        for (Book book : books) {
+            if(book.getId() == bookId){
+                found = true;
+                break;
+            }
+            position++;
+        }
+
+        if(found){
+            Book updatedBook = books.get(position);
+            updatedBook.setLoaned(isLoaned);
+            books.set(position, updatedBook);
+        }else{
+            message = "book not found";
+        }
+        
+
+        BookResponse.Builder response;
+
+        response = BookResponse.newBuilder();
+        
+        response.setMessage(message);
+
         responseObserver.onNext(response.build());
         //fecha a chamada
         responseObserver.onCompleted();
