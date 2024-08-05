@@ -65,7 +65,7 @@ public class TestClientBook {
         // bookResponse = bookStub.removeBook(bookRequest);
         // System.out.println(bookResponse.getMessage());
 
-        //Isso ta funcionando em partes, checar na book service se o livro esta sendo atualizado
+        //Isso ta funcionando em partes, checar na book service se o livro esta sendo atualizado(Esta sim)
         BookStatusRequest bookStatusRequest = BookStatusRequest.newBuilder().
                                                         setIsLoaned(true).
                                                         setBookId(10).
