@@ -9,7 +9,7 @@ service BookManagement {
     //Client side stream to remove books RPC
     rpc RemoveBook (BookRequest) returns (BookResponse);
 
-    //Client side stream to remove books RPC
+    //Simple RPC to change the book status (borrowed or not)
     rpc BookTransaction (BookStatusRequest) returns (BookResponse);
 
     // Server-side Streaming RPC

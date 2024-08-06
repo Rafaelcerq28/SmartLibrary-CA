@@ -1,10 +1,11 @@
 package com.library.client;
 
 
+
 import com.grpcfiles.UserManagementGrpc;
 import com.grpcfiles.UserManagementGrpc.UserManagementBlockingStub;
 import com.grpcfiles.UserOuterClass.UserRequest;
-import com.grpcfiles.UserOuterClass.UserResponse;
+import com.grpcfiles.UserOuterClass.UserResponse;   
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -12,9 +13,8 @@ import io.grpc.ManagedChannelBuilder;
 public class TestClient {
     public static void main(String[] args) {
         ManagedChannel userChannel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
-        
-
         UserManagementBlockingStub userStub = UserManagementGrpc.newBlockingStub(userChannel);
+        
         // Call the user request sending a "test" as name and 1 as user Id
         
         UserRequest userRequest = UserRequest.newBuilder().
@@ -26,7 +26,6 @@ public class TestClient {
         UserResponse response = userStub.addUser(userRequest);
         // show the return message
         System.out.println(response.getMessage());
-
 
         // adding the second user
         userRequest = UserRequest.newBuilder().
