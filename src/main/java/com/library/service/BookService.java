@@ -32,8 +32,7 @@ public class BookService extends BookManagementImplBase{
     }
 
     @Override
-    public void addBook(BookRequest request, StreamObserver<BookResponse> responseObserver){
-        System.out.println("Chamada add book");       
+    public void addBook(BookRequest request, StreamObserver<BookResponse> responseObserver){      
         int bookId = books.size();
         String isbn = request.getIsbn();
         String title = request.getTitle();
@@ -46,7 +45,6 @@ public class BookService extends BookManagementImplBase{
         books.add(book);
 
         BookResponse.Builder response = BookResponse.newBuilder();
-        System.out.println("ok");
         response.setMessage(book.toString());
         responseObserver.onNext(response.build());
         responseObserver.onCompleted();
@@ -78,16 +76,16 @@ public class BookService extends BookManagementImplBase{
             position++;
         }
 
-       //remove the user and create a response
+       //remove the book and create a response
         BookResponse.Builder response;
 
         if(found){
             books.remove(position); 
             response = BookResponse.newBuilder();
-            response.setMessage("user " + book.getId() + " removed");           
+            response.setMessage("Book " + book.getId() + " was removed");           
         }else{
             response = BookResponse.newBuilder();
-            response.setMessage("user not found");  
+            response.setMessage("Book not found");  
         }
         
         responseObserver.onNext(response.build());
@@ -97,7 +95,6 @@ public class BookService extends BookManagementImplBase{
 
     @Override
     public void bookTransaction(BookStatusRequest request, StreamObserver<BookResponse> responseObserver) {
-        System.out.println("bookTransaction");
         boolean isLoaned = request.getIsLoaned();
         int bookId = request.getBookId();
         String message = "book status updated";
@@ -132,23 +129,5 @@ public class BookService extends BookManagementImplBase{
         responseObserver.onCompleted();
     }
 
-    
 
-    // @Override
-    // public void removeUsers(UserRequest request, StreamObserver<UserResponse> responseObserver){
-    //     System.out.println("chamando o metodo removeUser");
-    //     //Store the user in an user object
-    //     int userId = request.getUserId();
-    //     User user = new User(userId, "null", "null", "null");
-
-    //     //Search for the user in the list
-    //     int position = 0;
-    //     boolean found = false;
-    //     for(User userToRemove:users){
-    //         if(userToRemove.getId() == user.getId()){
-    //             found = true;
-    //             break;
-    //         }
-    //         position++;
-    //     }
 }

@@ -4,8 +4,19 @@
  */
 package com.library.client;
 
+import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 
+import com.grpcfiles.BookManagementGrpc;
+import com.grpcfiles.BookManagementGrpc.BookManagementBlockingStub;
+import com.grpcfiles.BookOuterClass.BookRequest;
+import com.grpcfiles.BookOuterClass.BookResponse;
+import com.grpcfiles.BookOuterClass.BookStatusRequest;
+import com.grpcfiles.Loan.LoanRequest;
+import com.grpcfiles.Loan.LoanResponse;
+import com.grpcfiles.LoanManagementGrpc;
+import com.grpcfiles.LoanManagementGrpc.LoanManagementBlockingStub;
 import com.grpcfiles.UserManagementGrpc;
 import com.grpcfiles.UserManagementGrpc.UserManagementBlockingStub;
 import com.grpcfiles.UserOuterClass.UserRequest;
@@ -20,15 +31,35 @@ import io.grpc.StatusRuntimeException;
  * @author Rafa
  */
 public class Client extends javax.swing.JFrame {
+    //User variables
     ManagedChannel userChannel;
     UserManagementBlockingStub userStub;
     UserRequest userRequest;
     UserResponse response;
 
+    //Book Variables
+    ManagedChannel bookChannel;
+    BookManagementBlockingStub bookStub;
+    BookRequest bookRequest;
+    BookResponse bookResponse;
+    BookStatusRequest bookStatusRequest;
+    //Loan Variables
+    ManagedChannel libraryChannel;
+    LoanManagementBlockingStub libraryStub;
+    LoanRequest loanRequest;
+    LoanResponse loanResponse;
+
     public Client() {
         
+        //User Channel/Stub
         this.userChannel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
         this.userStub = UserManagementGrpc.newBlockingStub(userChannel);
+        //Book Channel/Stub 
+        this.bookChannel = ManagedChannelBuilder.forAddress("localhost", 9091).usePlaintext().build();
+        this.bookStub = BookManagementGrpc.newBlockingStub(bookChannel);
+        //Loan Channel/Stub
+        this.libraryChannel = ManagedChannelBuilder.forAddress("localhost", 9092).usePlaintext().build();
+        this.libraryStub = LoanManagementGrpc.newBlockingStub(libraryChannel);
 
         //Call the GUI components
         initComponents();
@@ -234,7 +265,21 @@ public class Client extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
+        String isbn,author,title;
 
+        isbn = JOptionPane.showInputDialog("Insert the book ISBN");
+        author = JOptionPane.showInputDialog("Insert the author's name");
+        title = JOptionPane.showInputDialog("Insert the book's title");
+
+        bookRequest = BookRequest.newBuilder().
+                                setIsbn(isbn).
+                                setAuthor(author).
+                                setTitle(title).
+                                build();
+
+        bookResponse = bookStub.addBook(bookRequest);
+        // show the return message
+        textArea.setText(bookResponse.getMessage());
     }//GEN-LAST:event_addBookBtnActionPerformed
 
     private void delUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delUserBtnActionPerformed
@@ -270,16 +315,58 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_showUserBtnActionPerformed
 
     private void deleteBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBookBtnActionPerformed
+        int id = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to delete"));
+
+        bookRequest = bookRequest.newBuilder().
+        setBookId(id).
+        build();
+
+        bookResponse = bookStub.removeBook(bookRequest);
+        textArea.setText(bookResponse.getMessage());
+    }
 
     private void showBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showBooksBtnActionPerformed
-        textArea.setText("ID: 12  | ISBN: null              | Title: null                           | Author: null                 | Loaned: false\n"
-                + "ID: 6   | ISBN: 978-0-679-64185-5 | Title: The Catcher in the Rye         | Author: J.D. Salinger        | Loaned: false");
+        
+        Iterator<BookResponse> responseList = bookStub.listBooks(null);
+        StringBuilder sb = new StringBuilder();
+        sb.append("List of Books\n");
+        // iterates my iteratos to return a list os users
+        while (responseList.hasNext()) {
+            sb.append(responseList.next().getMessage()).append("\n");
+        }
+
+        textArea.setText(sb.toString());
+
     }//GEN-LAST:event_showBooksBtnActionPerformed
 
     private void borrowBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrowBookBtnActionPerformed
-        // TODO add your handling code here:
+        int bookId,userId;
+        String bookName,userName;
+
+        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to borrow"));
+        userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
+        bookName = JOptionPane.showInputDialog("Insert the book's name ");
+        userName = JOptionPane.showInputDialog("Insert the user's name ");
+
+        StringBuilder sb = new StringBuilder();
+
+        loanRequest = LoanRequest.newBuilder().
+                                setBookId(bookId).setUserId(userId).
+                                setBookName(bookName).
+                                setUserName(userName).
+                                build();
+
+        loanResponse = libraryStub.borrowBook(loanRequest);
+        sb.append(loanResponse.getMessage()).append(" ");
+
+        bookStatusRequest = BookStatusRequest.newBuilder().
+                                                setBookId(1).
+                                                setIsLoaned(true).
+                                                build();
+
+        BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
+        sb.append(bookResponse.getMessage());
+        textArea.setText(sb.toString());
     }//GEN-LAST:event_borrowBookBtnActionPerformed
 
     private void returnBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookBtnActionPerformed

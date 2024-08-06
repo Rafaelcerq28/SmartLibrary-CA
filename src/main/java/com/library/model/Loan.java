@@ -48,8 +48,7 @@ public class Loan {
 
     @Override
     public String toString() {
-        return "Loan [bookId=" + bookId + ", userId=" + userId + ", bookName=" + bookName + ", userName=" + userName
-                + "]";
+        return "Book Id: " + bookId + " | User ID: " + userId + " | Book Name: " + bookName + " |  User Name: " + userName;
     }
 
     
