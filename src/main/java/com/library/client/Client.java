@@ -21,6 +21,7 @@ import com.grpcfiles.UserManagementGrpc;
 import com.grpcfiles.UserManagementGrpc.UserManagementBlockingStub;
 import com.grpcfiles.UserOuterClass.UserRequest;
 import com.grpcfiles.UserOuterClass.UserResponse;
+import com.library.server.ServiceRegistration;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -61,6 +62,19 @@ public class Client extends javax.swing.JFrame {
         this.libraryChannel = ManagedChannelBuilder.forAddress("localhost", 9092).usePlaintext().build();
         this.libraryStub = LoanManagementGrpc.newBlockingStub(libraryChannel);
 
+        try {
+            ServiceRegistration userServerRegistration = new ServiceRegistration();            
+            userServerRegistration.serviceRegistration("userService", "user server", 9090);
+
+            ServiceRegistration bookServerRegistration = new ServiceRegistration();
+            bookServerRegistration.serviceRegistration("bookService", "book server", 9090);
+            
+            ServiceRegistration libraryServerRegistration = new ServiceRegistration();
+            libraryServerRegistration.serviceRegistration("libraryService", "library server", 9090);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         //Call the GUI components
         initComponents();
     }
@@ -343,10 +357,10 @@ public class Client extends javax.swing.JFrame {
         int bookId,userId;
         String bookName,userName;
 
-        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to borrow"));
+        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to BORROW"));
         userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
-        bookName = JOptionPane.showInputDialog("Insert the book's name ");
-        userName = JOptionPane.showInputDialog("Insert the user's name ");
+        bookName = "";//JOptionPane.showInputDialog("Insert the book's name ");
+        userName = "";//JOptionPane.showInputDialog("Insert the user's name ");
 
         StringBuilder sb = new StringBuilder();
 
@@ -357,10 +371,9 @@ public class Client extends javax.swing.JFrame {
                                 build();
 
         loanResponse = libraryStub.borrowBook(loanRequest);
-        sb.append(loanResponse.getMessage()).append(" ");
 
         bookStatusRequest = BookStatusRequest.newBuilder().
-                                                setBookId(1).
+                                                setBookId(bookId).
                                                 setIsLoaned(true).
                                                 build();
 
@@ -370,7 +383,32 @@ public class Client extends javax.swing.JFrame {
     }//GEN-LAST:event_borrowBookBtnActionPerformed
 
     private void returnBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookBtnActionPerformed
-        // TODO add your handling code here:
+        int bookId,userId;
+        String bookName,userName;
+
+        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to RETURN"));
+        userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
+        bookName = "";//JOptionPane.showInputDialog("Insert the book's name ");
+        userName = "";//JOptionPane.showInputDialog("Insert the user's name ");
+
+        StringBuilder sb = new StringBuilder();
+
+        loanRequest = LoanRequest.newBuilder().
+                                setBookId(bookId).setUserId(userId).
+                                setBookName(bookName).
+                                setUserName(userName).
+                                build();
+
+        loanResponse = libraryStub.borrowBook(loanRequest);
+
+        bookStatusRequest = BookStatusRequest.newBuilder().
+                                                setBookId(bookId).
+                                                setIsLoaned(false).
+                                                build();
+
+        BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
+        sb.append(bookResponse.getMessage());
+        textArea.setText(sb.toString());
     }//GEN-LAST:event_returnBookBtnActionPerformed
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
@@ -392,6 +430,8 @@ public class Client extends javax.swing.JFrame {
             textArea.setText(response.getMessage());
         }catch(StatusRuntimeException e){
             JOptionPane.showMessageDialog(null, "User Server is Offline.","Error", JOptionPane.ERROR_MESSAGE);
+        }catch(NumberFormatException e){
+
         }
     }//GEN-LAST:event_addUserBtnActionPerformed
 

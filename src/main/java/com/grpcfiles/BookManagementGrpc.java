@@ -204,7 +204,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *Simple RPC to change the book status (borrowed or not)
      * </pre>
      */
     public void bookTransaction(com.grpcfiles.BookOuterClass.BookStatusRequest request,
@@ -298,7 +298,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *Simple RPC to change the book status (borrowed or not)
      * </pre>
      */
     public void bookTransaction(com.grpcfiles.BookOuterClass.BookStatusRequest request,
@@ -359,7 +359,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *Simple RPC to change the book status (borrowed or not)
      * </pre>
      */
     public com.grpcfiles.BookOuterClass.BookResponse bookTransaction(com.grpcfiles.BookOuterClass.BookStatusRequest request) {
@@ -421,7 +421,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *Simple RPC to change the book status (borrowed or not)
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.BookOuterClass.BookResponse> bookTransaction(
