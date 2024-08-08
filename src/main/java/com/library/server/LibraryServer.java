@@ -3,7 +3,6 @@ package com.library.server;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import com.library.service.BookService;
 import com.library.service.LibraryService;
 
 import io.grpc.Server;

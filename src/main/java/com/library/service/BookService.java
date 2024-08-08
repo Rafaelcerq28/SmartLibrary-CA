@@ -7,7 +7,6 @@ import com.grpcfiles.BookOuterClass.BookRequest;
 import com.grpcfiles.BookOuterClass.BookResponse;
 import com.grpcfiles.BookOuterClass.BookStatusRequest;
 import com.grpcfiles.BookOuterClass.Empty;
-import com.grpcfiles.UserOuterClass.UserResponse;
 import com.library.model.Book;
 
 import io.grpc.stub.StreamObserver;
@@ -15,8 +14,6 @@ import io.grpc.stub.StreamObserver;
 public class BookService extends BookManagementImplBase{
 
     ArrayList<Book> books = new ArrayList<>();
-
-    
 
     public BookService() {
         books.add(new Book(books.size(), "978-0-345-39180-3", "The Hobbit", "J.R.R. Tolkien", false));
