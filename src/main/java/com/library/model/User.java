@@ -2,11 +2,13 @@ package com.library.model;
 
 public class User implements Comparable<Object>{
     
+    //Variables
     private int id;
     private String name;
     private String phone;
     private String address;
 
+    //Constructors
     public User(int id, String name, String phone, String address) {
         this.id = id;
         this.name = name;
@@ -14,12 +16,14 @@ public class User implements Comparable<Object>{
         this.address = address;
     }
 
+    //Compare to
     @Override
     public int compareTo(Object obj) {
         User myUser = (User) obj;
         return Integer.compare(this.id, myUser.id);  
     }
     
+    //Getters / Setters
     public int getId() {
         return id;
     }
@@ -52,16 +56,10 @@ public class User implements Comparable<Object>{
         this.address = address;
     }
 
-
+    //ToString
     @Override
     public String toString() {
         return //"User [id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
         String.format("ID: %-3d | Name: %-20s | Phone: %-15s | Address: %-25s",id,name,phone,address);
     } 
-
-    // @Override
-    // public String toString() {
-    //     return String.format("ID: %-3d | ISBN: %-17s | Title: %-30s | Author: %-20s | Loaned: %-5s",
-    //             id, isbn, title, author, isLoaned);
-    // }
 }

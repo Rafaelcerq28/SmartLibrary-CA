@@ -60,7 +60,7 @@ public final class BookOuterClass {
   }
   /**
    * <pre>
-   * Mensagem para adicionar ou remover um livro
+   * Message for adding or removing a book
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.BookRequest}
@@ -486,7 +486,7 @@ public final class BookOuterClass {
     }
     /**
      * <pre>
-     * Mensagem para adicionar ou remover um livro
+     * Message for adding or removing a book
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.BookRequest}
@@ -988,6 +988,10 @@ public final class BookOuterClass {
     int getBookId();
   }
   /**
+   * <pre>
+   * Message for changing book status
+   * </pre>
+   *
    * Protobuf type {@code com.grpcfiles.BookStatusRequest}
    */
   public  static final class BookStatusRequest extends
@@ -1257,6 +1261,10 @@ public final class BookOuterClass {
       return builder;
     }
     /**
+     * <pre>
+     * Message for changing book status
+     * </pre>
+     *
      * Protobuf type {@code com.grpcfiles.BookStatusRequest}
      */
     public static final class Builder extends
@@ -1529,7 +1537,7 @@ public final class BookOuterClass {
   }
   /**
    * <pre>
-   * Mensagem de resposta para operações de livro
+   * Response message for book operations
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.BookResponse}
@@ -1800,7 +1808,7 @@ public final class BookOuterClass {
     }
     /**
      * <pre>
-     * Mensagem de resposta para operações de livro
+     * Response message for book operations
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.BookResponse}
@@ -2107,7 +2115,7 @@ public final class BookOuterClass {
   }
   /**
    * <pre>
-   * Estrutura de um livro
+   * Structure representing a book
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.Book}
@@ -2480,7 +2488,7 @@ public final class BookOuterClass {
     }
     /**
      * <pre>
-     * Estrutura de um livro
+     * Structure representing a book
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.Book}
@@ -2909,7 +2917,7 @@ public final class BookOuterClass {
   }
   /**
    * <pre>
-   * Mensagem vazia para requisições que não necessitam parâmetros
+   * Empty message for requests that don't require parameters
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.Empty}
@@ -3128,7 +3136,7 @@ public final class BookOuterClass {
     }
     /**
      * <pre>
-     * Mensagem vazia para requisições que não necessitam parâmetros
+     * Empty message for requests that don't require parameters
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.Empty}

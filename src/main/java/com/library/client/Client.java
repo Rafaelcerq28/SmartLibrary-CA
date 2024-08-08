@@ -56,6 +56,7 @@ public class Client extends javax.swing.JFrame {
         this.libraryChannel = ManagedChannelBuilder.forAddress("localhost", 9092).usePlaintext().build();
         this.libraryStub = LoanManagementGrpc.newBlockingStub(libraryChannel);
 
+        //Initializin Registering JmDNS
         try {
             ServiceRegistration userServerRegistration = new ServiceRegistration();            
             userServerRegistration.serviceRegistration("userService", "user server", 9090);
@@ -263,156 +264,243 @@ public class Client extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        String isbn,author,title;
+        // Declare variables for book information
+        String isbn, author, title;
 
+        // Prompt user to input book details
         isbn = JOptionPane.showInputDialog("Insert the book ISBN");
         author = JOptionPane.showInputDialog("Insert the author's name");
         title = JOptionPane.showInputDialog("Insert the book's title");
 
-        bookRequest = BookRequest.newBuilder().
-                                setIsbn(isbn).
-                                setAuthor(author).
-                                setTitle(title).
-                                build();
+        // Build the book request
+        BookRequest bookRequest = BookRequest.newBuilder()
+                                              .setIsbn(isbn)
+                                              .setAuthor(author)
+                                              .setTitle(title)
+                                              .build();
 
-        bookResponse = bookStub.addBook(bookRequest);
-        // show the return message
+        // Call the stub to add the book and get the response
+        BookResponse bookResponse = bookStub.addBook(bookRequest);
+
+        // Show the return message
         textArea.setText(bookResponse.getMessage());
     }                                          
 
     private void delUserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        try{
+        try {
+            // Prompt the user to enter the ID of the user to be removed
             int id = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID to remove"));
-            //to remove user
-            userRequest = UserRequest.newBuilder().setUserId(id).build();
-            response = userStub.removeUsers(userRequest);
+            
+            // Build the request to remove the user
+            UserRequest userRequest = UserRequest.newBuilder()
+                                                 .setUserId(id)
+                                                 .build();
+            
+            // Send the request using the userStub and get the response
+            UserResponse response = userStub.removeUsers(userRequest);
+            
+            // Display the server's response in the text area
             textArea.setText(response.getMessage());
-        }catch(StatusRuntimeException e){
-            JOptionPane.showMessageDialog(null, "User Server is Offline.","Error", JOptionPane.ERROR_MESSAGE);
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "This field accepts only numbers","Error", JOptionPane.ERROR_MESSAGE);
+            
+        } catch (StatusRuntimeException e) {
+            // Show an error message if the server is offline
+            JOptionPane.showMessageDialog(null, "User Server is Offline.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        } catch (NumberFormatException e) {
+            // Show an error message if the input is not a valid number
+            JOptionPane.showMessageDialog(null, "This field accepts only numbers.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }                                          
 
     private void showUserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        try{
-
-            java.util.Iterator<UserResponse> responseList = userStub.getUsers(null);
-            //iterates my iteratos to return a list os users
+        try {
+            // Request the list of users from the server
+            Iterator<UserResponse> responseList = userStub.getUsers(null);
+    
+            // Prepare a StringBuilder to accumulate the user information
             StringBuilder sb = new StringBuilder();
             sb.append("List of users:\n");
+    
+            // Iterate through the responses and append each user's message to the StringBuilder
             while (responseList.hasNext()) {
                 sb.append(responseList.next().getMessage()).append("\n");
             }
             
+            // Display the list of users in the text area
             textArea.setText(sb.toString());
-        }catch(StatusRuntimeException e){
-            JOptionPane.showMessageDialog(null, "User Server is Offline.","Error", JOptionPane.ERROR_MESSAGE);
+    
+        } catch (StatusRuntimeException e) {
+            // Handle server offline error
+            JOptionPane.showMessageDialog(null, "User Server is Offline.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }                                           
 
     private void deleteBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to delete"));
-
-        bookRequest = bookRequest.newBuilder().
-        setBookId(id).
-        build();
-
-        bookResponse = bookStub.removeBook(bookRequest);
-        textArea.setText(bookResponse.getMessage());
+        try {
+            // Prompt the user to input the book ID to delete
+            int id = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to delete"));
+    
+            // Build the request to delete the book
+            BookRequest bookRequest = BookRequest.newBuilder()
+                                                  .setBookId(id)
+                                                  .build();
+    
+            // Call the stub to remove the book and get the response
+            BookResponse bookResponse = bookStub.removeBook(bookRequest);
+    
+            // Display the server's response message in the text area
+            textArea.setText(bookResponse.getMessage());
+    
+        } catch (NumberFormatException e) {
+            
+        } catch (StatusRuntimeException e) {
+            // Handle server offline or other gRPC errors
+            JOptionPane.showMessageDialog(null, "Book Server is Offline.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }                                             
 
     private void showBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        Iterator<BookResponse> responseList = bookStub.listBooks(null);
-        StringBuilder sb = new StringBuilder();
-        sb.append("List of Books\n");
-        // iterates my iteratos to return a list os users
-        while (responseList.hasNext()) {
-            sb.append(responseList.next().getMessage()).append("\n");
+        try {
+            // Request the list of books from the server
+            Iterator<BookResponse> responseList = bookStub.listBooks(null);
+    
+            // Prepare a StringBuilder to accumulate the book information
+            StringBuilder sb = new StringBuilder();
+            sb.append("List of Books:\n");
+    
+            // Iterate through the responses and append each book's message to the StringBuilder
+            while (responseList.hasNext()) {
+                sb.append(responseList.next().getMessage()).append("\n");
+            }
+    
+            // Display the list of books in the text area
+            textArea.setText(sb.toString());
+    
+        } catch (StatusRuntimeException e) {
+            // Handle server offline or other gRPC errors
+            JOptionPane.showMessageDialog(null, "Book Server is Offline.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        textArea.setText(sb.toString());
     }                                            
 
     private void borrowBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        int bookId,userId;
-        String bookName,userName;
+        try {
+            // Variables for user input
+            int bookId, userId;
+            String bookName = "", userName = "";
+    
+            // Prompt the user to input the book ID and user ID
+            bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to BORROW"));
+            userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
 
-        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to BORROW"));
-        userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
-        bookName = "";//JOptionPane.showInputDialog("Insert the book's name ");
-        userName = "";//JOptionPane.showInputDialog("Insert the user's name ");
-
-        StringBuilder sb = new StringBuilder();
-
-        loanRequest = LoanRequest.newBuilder().
-                                setBookId(bookId).setUserId(userId).
-                                setBookName(bookName).
-                                setUserName(userName).
-                                build();
-
-        loanResponse = libraryStub.borrowBook(loanRequest);
-
-        bookStatusRequest = BookStatusRequest.newBuilder().
-                                                setBookId(bookId).
-                                                setIsLoaned(true).
-                                                build();
-
-        BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
-        sb.append(bookResponse.getMessage());
-        textArea.setText(sb.toString());
+            // Build the loan request with the provided book and user information
+            LoanRequest loanRequest = LoanRequest.newBuilder()
+                                                 .setBookId(bookId)
+                                                 .setUserId(userId)
+                                                 .setBookName(bookName)
+                                                 .setUserName(userName)
+                                                 .build();
+    
+            // Send the loan request to the library stub and get the response
+            LoanResponse loanResponse = libraryStub.borrowBook(loanRequest);
+    
+            // Update the book status to indicate that it has been loaned
+            BookStatusRequest bookStatusRequest = BookStatusRequest.newBuilder()
+                                                                   .setBookId(bookId)
+                                                                   .setIsLoaned(true)
+                                                                   .build();
+    
+            // Process the book transaction and get the response
+            BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
+    
+            // Display the response message in the text area
+            StringBuilder sb = new StringBuilder();
+            sb.append(bookResponse.getMessage());
+            textArea.setText(sb.toString());
+    
+        } catch (NumberFormatException e) {
+            // Handle cases where the input is not a valid number
+            JOptionPane.showMessageDialog(null, "Please enter a valid number for Book ID and User ID.", "Input Error", JOptionPane.ERROR_MESSAGE);
+    
+        } catch (StatusRuntimeException e) {
+            // Handle server errors or network issues
+            JOptionPane.showMessageDialog(null, "Error communicating with the server. Please try again later.", "Server Error", JOptionPane.ERROR_MESSAGE);
+        }
     }                                             
 
     private void returnBookBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        int bookId,userId;
-        String bookName,userName;
-
-        bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to RETURN"));
-        userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
-        bookName = "";//JOptionPane.showInputDialog("Insert the book's name ");
-        userName = "";//JOptionPane.showInputDialog("Insert the user's name ");
-
-        StringBuilder sb = new StringBuilder();
-
-        loanRequest = LoanRequest.newBuilder().
-                                setBookId(bookId).setUserId(userId).
-                                setBookName(bookName).
-                                setUserName(userName).
-                                build();
-
-        loanResponse = libraryStub.borrowBook(loanRequest);
-
-        bookStatusRequest = BookStatusRequest.newBuilder().
-                                                setBookId(bookId).
-                                                setIsLoaned(false).
-                                                build();
-
-        BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
-        sb.append(bookResponse.getMessage());
-        textArea.setText(sb.toString());        // TODO add your handling code here:
+        try {
+            // Variables for user input
+            int bookId, userId;
+            String bookName = "", userName = "";
+    
+            // Prompt the user to input the book ID and user ID
+            bookId = Integer.parseInt(JOptionPane.showInputDialog("Insert the book ID to RETURN"));
+            userId = Integer.parseInt(JOptionPane.showInputDialog("Insert the user ID"));
+    
+            // Build the loan request to process the return of the book
+            LoanRequest loanRequest = LoanRequest.newBuilder()
+                                                 .setBookId(bookId)
+                                                 .setUserId(userId)
+                                                 .setBookName(bookName)
+                                                 .setUserName(userName)
+                                                 .build();
+    
+            // Send the loan request to the library stub (might be a typo here, as it should probably be a returnBook method)
+            LoanResponse loanResponse = libraryStub.returnBook(loanRequest);
+    
+            // Update the book status to indicate that it has been returned
+            BookStatusRequest bookStatusRequest = BookStatusRequest.newBuilder()
+                                                                   .setBookId(bookId)
+                                                                   .setIsLoaned(false)
+                                                                   .build();
+    
+            // Process the book transaction and get the response
+            BookResponse bookResponse = bookStub.bookTransaction(bookStatusRequest);
+    
+            // Display the response message in the text area
+            StringBuilder sb = new StringBuilder();
+            sb.append(bookResponse.getMessage());
+            textArea.setText(sb.toString());
+    
+        } catch (NumberFormatException e) {
+            // Handle cases where the input is not a valid number
+            JOptionPane.showMessageDialog(null, "Please enter a valid number for Book ID and User ID.", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (StatusRuntimeException e) {
+            // Handle server errors or network issues
+            JOptionPane.showMessageDialog(null, "Error communicating with the server. Please try again later.", "Server Error", JOptionPane.ERROR_MESSAGE);
+        }
     }                                             
 
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        try{
-            String name,phone,address;
-
+        try {
+            // Variables for user input
+            String name, phone, address;
+    
+            // Prompt the user to input the user's name, phone, and address
             name = JOptionPane.showInputDialog("Insert the user name");
             phone = JOptionPane.showInputDialog("Insert the user's phone");
             address = JOptionPane.showInputDialog("Insert the user's address");
-
-            userRequest = UserRequest.newBuilder().
-                                            setName(name).
-                                            setPhone(phone).
-                                            setAddress(address).
-                                            build();
-
-            response = userStub.addUser(userRequest);  
-
+    
+            // Build the user request with the provided information
+            UserRequest userRequest = UserRequest.newBuilder()
+                                                 .setName(name)
+                                                 .setPhone(phone)
+                                                 .setAddress(address)
+                                                 .build();
+    
+            // Send the request to add the user and receive the response
+            UserResponse response = userStub.addUser(userRequest);
+    
+            // Display the server's response message in the text area
             textArea.setText(response.getMessage());
-        }catch(StatusRuntimeException e){
-            JOptionPane.showMessageDialog(null, "User Server is Offline.","Error", JOptionPane.ERROR_MESSAGE);
-        }catch(NumberFormatException e){
-
+    
+        } catch (StatusRuntimeException e) {
+            // Handle server offline or other gRPC errors
+            JOptionPane.showMessageDialog(null, "User Server is Offline.", "Error", JOptionPane.ERROR_MESSAGE);
+    
+        } catch (NumberFormatException e) {
+            // Currently not needed, but it can handle number formatting if required in the future
+            JOptionPane.showMessageDialog(null, "Please enter valid input.", "Input Error", JOptionPane.ERROR_MESSAGE);
         }
     }                                          
 

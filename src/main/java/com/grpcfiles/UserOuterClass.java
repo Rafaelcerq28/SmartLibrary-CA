@@ -55,7 +55,7 @@ public final class UserOuterClass {
   }
   /**
    * <pre>
-   * Mensagem para adicionar ou remover um usuário
+   * Message for adding or removing a user
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.UserRequest}
@@ -454,7 +454,7 @@ public final class UserOuterClass {
     }
     /**
      * <pre>
-     * Mensagem para adicionar ou remover um usuário
+     * Message for adding or removing a user
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.UserRequest}
@@ -914,18 +914,10 @@ public final class UserOuterClass {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     *retornar um User??
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     java.lang.String getMessage();
     /**
-     * <pre>
-     *retornar um User??
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     com.google.protobuf.ByteString
@@ -933,7 +925,7 @@ public final class UserOuterClass {
   }
   /**
    * <pre>
-   * Mensagem de resposta para operações de usuário
+   * Response message for user operations
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.UserResponse}
@@ -1016,10 +1008,6 @@ public final class UserOuterClass {
     public static final int MESSAGE_FIELD_NUMBER = 1;
     private volatile java.lang.Object message_;
     /**
-     * <pre>
-     *retornar um User??
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     public java.lang.String getMessage() {
@@ -1035,10 +1023,6 @@ public final class UserOuterClass {
       }
     }
     /**
-     * <pre>
-     *retornar um User??
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     public com.google.protobuf.ByteString
@@ -1212,7 +1196,7 @@ public final class UserOuterClass {
     }
     /**
      * <pre>
-     * Mensagem de resposta para operações de usuário
+     * Response message for user operations
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.UserResponse}
@@ -1364,10 +1348,6 @@ public final class UserOuterClass {
 
       private java.lang.Object message_ = "";
       /**
-       * <pre>
-       *retornar um User??
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public java.lang.String getMessage() {
@@ -1383,10 +1363,6 @@ public final class UserOuterClass {
         }
       }
       /**
-       * <pre>
-       *retornar um User??
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public com.google.protobuf.ByteString
@@ -1403,10 +1379,6 @@ public final class UserOuterClass {
         }
       }
       /**
-       * <pre>
-       *retornar um User??
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder setMessage(
@@ -1420,10 +1392,6 @@ public final class UserOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *retornar um User??
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder clearMessage() {
@@ -1433,10 +1401,6 @@ public final class UserOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *retornar um User??
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder setMessageBytes(
@@ -1534,7 +1498,7 @@ public final class UserOuterClass {
   }
   /**
    * <pre>
-   *Object User
+   * Object representing a user
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.User}
@@ -1882,7 +1846,7 @@ public final class UserOuterClass {
     }
     /**
      * <pre>
-     *Object User
+     * Object representing a user
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.User}
@@ -2267,7 +2231,7 @@ public final class UserOuterClass {
   }
   /**
    * <pre>
-   * Mensagem vazia para requisições que não necessitam parâmetros
+   * Empty message for requests that don't require parameters
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.Empty}
@@ -2486,7 +2450,7 @@ public final class UserOuterClass {
     }
     /**
      * <pre>
-     * Mensagem vazia para requisições que não necessitam parâmetros
+     * Empty message for requests that don't require parameters
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.Empty}

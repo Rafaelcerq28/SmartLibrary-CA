@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class Book {
 
+    //Variables
     private int id;
     private String isbn;
     private String title;
     private String author;
     private boolean isLoaned;
     
+    //Constructors
     public Book(int id, String isbn, String title, String author) {
         this.id = id;
         this.isbn = isbn;
@@ -28,6 +30,7 @@ public class Book {
     public Book() {
     }
     
+    //Getters / Setters
     public int getId() {
         return id;
     }
@@ -59,6 +62,8 @@ public class Book {
         this.isLoaned = isLoaned;
     }
 
+
+    //ToString
     @Override
     public String toString() {
         return String.format("ID: %-3d | ISBN: %-17s | Title: %-30s | Author: %-20s | Loaned: %-5s",

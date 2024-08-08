@@ -10,21 +10,24 @@ import io.grpc.ServerBuilder;
 
 public class BookServer {
     public static void main(String[] args) throws IOException, InterruptedException {
+        // Define the server port
         int port = 9091;
-        Logger logger = Logger.getLogger(BookServer.class.getName());
-        //Criando nosso server chamando o server builder e
-        // setando uma porta para o servidor e 
-        // adicionando o serviço que esse servidor vai iniciar
-        Server server = ServerBuilder.
-                    forPort(9091).
-                    addService(new BookService()).
-                    build();  
 
-        //Dando start no servidor (essa parte pede para lançar uma exeção)
+        // Initialize the logger
+        Logger logger = Logger.getLogger(BookServer.class.getName());
+
+        // Build the gRPC server, binding it to the specified port and adding the BookService
+        Server server = ServerBuilder
+                            .forPort(port)
+                            .addService(new BookService())
+                            .build();
+
+        // Start the server
         server.start();
         System.out.println("Server started at " + server.getPort());
-        logger.info("Server started, listening on " + port);
-        //isso Waits for the server to become terminated
+        logger.info("Server started, listening on port " + port);
+
+        // Keep the server running and wait for termination
         server.awaitTermination();
     }
 }

@@ -10,21 +10,22 @@ import io.grpc.ServerBuilder;
 
 public class LibraryServer {
     public static void main(String[] args) throws IOException, InterruptedException {
+        // Define the server port
         int port = 9092;
+        // Initialize the logger
         Logger logger = Logger.getLogger(LibraryServer.class.getName());
-        //Criando nosso server chamando o server builder e
-        // setando uma porta para o servidor e 
-        // adicionando o serviço que esse servidor vai iniciar
+
+        // Build the gRPC server, binding it to the specified port and adding the LibraryService     
         Server server = ServerBuilder.
                     forPort(9092).
                     addService(new LibraryService()).
                     build();  
 
-        //Dando start no servidor (essa parte pede para lançar uma exeção)
+        // Start the server            
         server.start();
         System.out.println("Server started at " + server.getPort());
         logger.info("Server started, listening on " + port);
-        //isso Waits for the server to become terminated
+        // Keep the server running and wait for termination
         server.awaitTermination();
     }
 }

@@ -194,7 +194,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *RPC to remove a book
      * </pre>
      */
     public void removeBook(com.grpcfiles.BookOuterClass.BookRequest request,
@@ -214,7 +214,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     * Server-side Streaming RPC
+     * RPC to list all books (server-side streaming)
      * </pre>
      */
     public void listBooks(com.grpcfiles.BookOuterClass.Empty request,
@@ -287,7 +287,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *RPC to remove a book
      * </pre>
      */
     public void removeBook(com.grpcfiles.BookOuterClass.BookRequest request,
@@ -309,7 +309,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     * Server-side Streaming RPC
+     * RPC to list all books (server-side streaming)
      * </pre>
      */
     public void listBooks(com.grpcfiles.BookOuterClass.Empty request,
@@ -349,7 +349,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *RPC to remove a book
      * </pre>
      */
     public com.grpcfiles.BookOuterClass.BookResponse removeBook(com.grpcfiles.BookOuterClass.BookRequest request) {
@@ -369,7 +369,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     * Server-side Streaming RPC
+     * RPC to list all books (server-side streaming)
      * </pre>
      */
     public java.util.Iterator<com.grpcfiles.BookOuterClass.BookResponse> listBooks(
@@ -410,7 +410,7 @@ public final class BookManagementGrpc {
 
     /**
      * <pre>
-     *Client side stream to remove books RPC
+     *RPC to remove a book
      * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.grpcfiles.BookOuterClass.BookResponse> removeBook(

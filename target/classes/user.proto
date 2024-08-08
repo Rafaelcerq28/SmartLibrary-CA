@@ -14,7 +14,7 @@ service UserManagement {
     rpc GetUsers (Empty) returns (stream UserResponse);
 }
 
-// Mensagem para adicionar ou remover um usuário
+// Message for adding or removing a user
 message UserRequest {
     int32 user_id = 1;
     string name = 2;
@@ -22,18 +22,17 @@ message UserRequest {
     string address = 4;
 }
 
-// Mensagem de resposta para operações de usuário
+// Response message for user operations
 message UserResponse {
     string message = 1;
-    //retornar um User??
 }
 
-//Object User
+// Object representing a user
 message User {
    int32 user_id = 1;
     string name = 2;
     string email = 3;
 }
 
-// Mensagem vazia para requisições que não necessitam parâmetros
+// Empty message for requests that don't require parameters
 message Empty {}

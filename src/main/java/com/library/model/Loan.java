@@ -1,13 +1,14 @@
 package com.library.model;
 
 public class Loan {
+
+    //Variables
     private int bookId;
     private int userId;
     private String bookName;
     private String userName;
 
-    
-    
+    //Constructors
     public Loan() {
     }
     
@@ -17,6 +18,8 @@ public class Loan {
         this.bookName = bookName;
         this.userName = userName;
     }
+
+    //Getters / Setters
     public int getBookId() {
         return bookId;
     }
@@ -46,6 +49,7 @@ public class Loan {
         this.userName = userName;
     }
 
+    //ToString
     @Override
     public String toString() {
         return "Book Id: " + bookId + " | User ID: " + userId + " | Book Name: " + bookName + " |  User Name: " + userName;

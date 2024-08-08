@@ -94,38 +94,6 @@ public final class LoanManagementGrpc {
      return getReturnBookMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<com.grpcfiles.Loan.Empty,
-      com.grpcfiles.Loan.LoanResponse> getMonitorLoansMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "MonitorLoans",
-      requestType = com.grpcfiles.Loan.Empty.class,
-      responseType = com.grpcfiles.Loan.LoanResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<com.grpcfiles.Loan.Empty,
-      com.grpcfiles.Loan.LoanResponse> getMonitorLoansMethod() {
-    io.grpc.MethodDescriptor<com.grpcfiles.Loan.Empty, com.grpcfiles.Loan.LoanResponse> getMonitorLoansMethod;
-    if ((getMonitorLoansMethod = LoanManagementGrpc.getMonitorLoansMethod) == null) {
-      synchronized (LoanManagementGrpc.class) {
-        if ((getMonitorLoansMethod = LoanManagementGrpc.getMonitorLoansMethod) == null) {
-          LoanManagementGrpc.getMonitorLoansMethod = getMonitorLoansMethod = 
-              io.grpc.MethodDescriptor.<com.grpcfiles.Loan.Empty, com.grpcfiles.Loan.LoanResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "com.grpcfiles.LoanManagement", "MonitorLoans"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Loan.Empty.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.grpcfiles.Loan.LoanResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new LoanManagementMethodDescriptorSupplier("MonitorLoans"))
-                  .build();
-          }
-        }
-     }
-     return getMonitorLoansMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -176,16 +144,6 @@ public final class LoanManagementGrpc {
       asyncUnimplementedUnaryCall(getReturnBookMethod(), responseObserver);
     }
 
-    /**
-     * <pre>
-     * Bidirectional Streaming RPC
-     * </pre>
-     */
-    public void monitorLoans(com.grpcfiles.Loan.Empty request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Loan.LoanResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getMonitorLoansMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -202,13 +160,6 @@ public final class LoanManagementGrpc {
                 com.grpcfiles.Loan.LoanRequest,
                 com.grpcfiles.Loan.LoanResponse>(
                   this, METHODID_RETURN_BOOK)))
-          .addMethod(
-            getMonitorLoansMethod(),
-            asyncServerStreamingCall(
-              new MethodHandlers<
-                com.grpcfiles.Loan.Empty,
-                com.grpcfiles.Loan.LoanResponse>(
-                  this, METHODID_MONITOR_LOANS)))
           .build();
     }
   }
@@ -255,17 +206,6 @@ public final class LoanManagementGrpc {
       asyncUnaryCall(
           getChannel().newCall(getReturnBookMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     * <pre>
-     * Bidirectional Streaming RPC
-     * </pre>
-     */
-    public void monitorLoans(com.grpcfiles.Loan.Empty request,
-        io.grpc.stub.StreamObserver<com.grpcfiles.Loan.LoanResponse> responseObserver) {
-      asyncServerStreamingCall(
-          getChannel().newCall(getMonitorLoansMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -307,17 +247,6 @@ public final class LoanManagementGrpc {
     public com.grpcfiles.Loan.LoanResponse returnBook(com.grpcfiles.Loan.LoanRequest request) {
       return blockingUnaryCall(
           getChannel(), getReturnBookMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Bidirectional Streaming RPC
-     * </pre>
-     */
-    public java.util.Iterator<com.grpcfiles.Loan.LoanResponse> monitorLoans(
-        com.grpcfiles.Loan.Empty request) {
-      return blockingServerStreamingCall(
-          getChannel(), getMonitorLoansMethod(), getCallOptions(), request);
     }
   }
 
@@ -367,7 +296,6 @@ public final class LoanManagementGrpc {
 
   private static final int METHODID_BORROW_BOOK = 0;
   private static final int METHODID_RETURN_BOOK = 1;
-  private static final int METHODID_MONITOR_LOANS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -392,10 +320,6 @@ public final class LoanManagementGrpc {
           break;
         case METHODID_RETURN_BOOK:
           serviceImpl.returnBook((com.grpcfiles.Loan.LoanRequest) request,
-              (io.grpc.stub.StreamObserver<com.grpcfiles.Loan.LoanResponse>) responseObserver);
-          break;
-        case METHODID_MONITOR_LOANS:
-          serviceImpl.monitorLoans((com.grpcfiles.Loan.Empty) request,
               (io.grpc.stub.StreamObserver<com.grpcfiles.Loan.LoanResponse>) responseObserver);
           break;
         default:
@@ -461,7 +385,6 @@ public final class LoanManagementGrpc {
               .setSchemaDescriptor(new LoanManagementFileDescriptorSupplier())
               .addMethod(getBorrowBookMethod())
               .addMethod(getReturnBookMethod())
-              .addMethod(getMonitorLoansMethod())
               .build();
         }
       }

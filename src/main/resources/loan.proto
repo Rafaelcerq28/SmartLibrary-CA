@@ -10,11 +10,9 @@ service LoanManagement {
     // Simple RPC
     rpc ReturnBook (LoanRequest) returns (LoanResponse);
     
-    // Bidirectional Streaming RPC
-    rpc MonitorLoans (Empty) returns (stream LoanResponse);
 }
 
-// Mensagem para operações de empréstimo de livros
+// Message for loan operations
 message LoanRequest {
     int32 user_id = 1;
     int32 book_id = 2;
@@ -22,12 +20,10 @@ message LoanRequest {
     string userName = 4;
 }
 
-// Mensagem de resposta para operações de empréstimo de livros
+// Response message for loan operation
 message LoanResponse {
     string message = 1;
-    //para retornar lista de usuarios:
-    //repeated User users = 2;
 }
 
-// Mensagem vazia para requisições que não necessitam parâmetros
+// Empty message for requests that don't require parameters
 message Empty {}

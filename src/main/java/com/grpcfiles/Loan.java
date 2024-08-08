@@ -50,7 +50,7 @@ public final class Loan {
   }
   /**
    * <pre>
-   * Mensagem para operações de empréstimo de livros
+   * Message for loan operations
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.LoanRequest}
@@ -424,7 +424,7 @@ public final class Loan {
     }
     /**
      * <pre>
-     * Mensagem para operações de empréstimo de livros
+     * Message for loan operations
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.LoanRequest}
@@ -840,20 +840,10 @@ public final class Loan {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     *para retornar lista de usuarios:
-     *repeated User users = 2;
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     java.lang.String getMessage();
     /**
-     * <pre>
-     *para retornar lista de usuarios:
-     *repeated User users = 2;
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     com.google.protobuf.ByteString
@@ -861,7 +851,7 @@ public final class Loan {
   }
   /**
    * <pre>
-   * Mensagem de resposta para operações de empréstimo de livros
+   * Response message for loan operation
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.LoanResponse}
@@ -944,11 +934,6 @@ public final class Loan {
     public static final int MESSAGE_FIELD_NUMBER = 1;
     private volatile java.lang.Object message_;
     /**
-     * <pre>
-     *para retornar lista de usuarios:
-     *repeated User users = 2;
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     public java.lang.String getMessage() {
@@ -964,11 +949,6 @@ public final class Loan {
       }
     }
     /**
-     * <pre>
-     *para retornar lista de usuarios:
-     *repeated User users = 2;
-     * </pre>
-     *
      * <code>string message = 1;</code>
      */
     public com.google.protobuf.ByteString
@@ -1142,7 +1122,7 @@ public final class Loan {
     }
     /**
      * <pre>
-     * Mensagem de resposta para operações de empréstimo de livros
+     * Response message for loan operation
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.LoanResponse}
@@ -1294,11 +1274,6 @@ public final class Loan {
 
       private java.lang.Object message_ = "";
       /**
-       * <pre>
-       *para retornar lista de usuarios:
-       *repeated User users = 2;
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public java.lang.String getMessage() {
@@ -1314,11 +1289,6 @@ public final class Loan {
         }
       }
       /**
-       * <pre>
-       *para retornar lista de usuarios:
-       *repeated User users = 2;
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public com.google.protobuf.ByteString
@@ -1335,11 +1305,6 @@ public final class Loan {
         }
       }
       /**
-       * <pre>
-       *para retornar lista de usuarios:
-       *repeated User users = 2;
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder setMessage(
@@ -1353,11 +1318,6 @@ public final class Loan {
         return this;
       }
       /**
-       * <pre>
-       *para retornar lista de usuarios:
-       *repeated User users = 2;
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder clearMessage() {
@@ -1367,11 +1327,6 @@ public final class Loan {
         return this;
       }
       /**
-       * <pre>
-       *para retornar lista de usuarios:
-       *repeated User users = 2;
-       * </pre>
-       *
        * <code>string message = 1;</code>
        */
       public Builder setMessageBytes(
@@ -1444,7 +1399,7 @@ public final class Loan {
   }
   /**
    * <pre>
-   * Mensagem vazia para requisições que não necessitam parâmetros
+   * Empty message for requests that don't require parameters
    * </pre>
    *
    * Protobuf type {@code com.grpcfiles.Empty}
@@ -1663,7 +1618,7 @@ public final class Loan {
     }
     /**
      * <pre>
-     * Mensagem vazia para requisições que não necessitam parâmetros
+     * Empty message for requests that don't require parameters
      * </pre>
      *
      * Protobuf type {@code com.grpcfiles.Empty}
@@ -1885,13 +1840,12 @@ public final class Loan {
       "\n\nloan.proto\022\rcom.grpcfiles\"S\n\013LoanReque" +
       "st\022\017\n\007user_id\030\001 \001(\005\022\017\n\007book_id\030\002 \001(\005\022\020\n\010" +
       "bookName\030\003 \001(\t\022\020\n\010userName\030\004 \001(\t\"\037\n\014Loan" +
-      "Response\022\017\n\007message\030\001 \001(\t\"\007\n\005Empty2\343\001\n\016L" +
+      "Response\022\017\n\007message\030\001 \001(\t\"\007\n\005Empty2\236\001\n\016L" +
       "oanManagement\022E\n\nBorrowBook\022\032.com.grpcfi" +
       "les.LoanRequest\032\033.com.grpcfiles.LoanResp" +
       "onse\022E\n\nReturnBook\022\032.com.grpcfiles.LoanR" +
-      "equest\032\033.com.grpcfiles.LoanResponse\022C\n\014M" +
-      "onitorLoans\022\024.com.grpcfiles.Empty\032\033.com." +
-      "grpcfiles.LoanResponse0\001b\006proto3"
+      "equest\032\033.com.grpcfiles.LoanResponseb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
