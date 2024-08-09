@@ -1,7 +1,11 @@
 package com.library.server;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.logging.Logger;
+
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
 
 import com.library.service.UserService;
 
@@ -23,8 +27,12 @@ public class UserServer {
 
         // Start the server
         server.start();
-        System.out.println("Server started at " + server.getPort());
         logger.info("Server started, listening on " + port);
+
+        // Register the service with JmDNS
+        JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+        ServiceInfo serviceInfo = ServiceInfo.create("_grpc._tcp.local.", "userservice", port, "User Management gRPC Service");
+        jmdns.registerService(serviceInfo);
 
         // Keep the server running and wait for termination
         server.awaitTermination();

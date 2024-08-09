@@ -1,7 +1,10 @@
 package com.library.client;
 
+import java.net.InetAddress;
 import java.util.Iterator;
 
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
 import javax.swing.JOptionPane;
 
 import com.grpcfiles.BookManagementGrpc;
@@ -58,17 +61,31 @@ public class Client extends javax.swing.JFrame {
 
         //Initializin Registering JmDNS
         try {
-            ServiceRegistration userServerRegistration = new ServiceRegistration();            
-            userServerRegistration.serviceRegistration("userService", "user server", 9090);
+            //testing
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 
-            ServiceRegistration bookServerRegistration = new ServiceRegistration();
-            bookServerRegistration.serviceRegistration("bookService", "book server", 9091);
+            ServiceInfo bookServiceInfo = jmdns.getServiceInfo("_grpc._tcp.local.", "bookservice");           
+            if (bookServiceInfo == null) {
+                JOptionPane.showMessageDialog(null,"Book Management service not found","error",JOptionPane.ERROR_MESSAGE);
+            }else{
+                System.out.println(bookServiceInfo.getName() + " found");
+            }
+
+            ServiceInfo userServiceInfo = jmdns.getServiceInfo("_grpc._tcp.local.", "userservice");
+            if(userServiceInfo == null){
+                JOptionPane.showMessageDialog(null,"User Management service not found","error",JOptionPane.ERROR_MESSAGE);
+            }else{
+                System.out.println(userServiceInfo.getName() + " found");
+            }
+
+            ServiceInfo loanServiceInfo = jmdns.getServiceInfo("_grpc._tcp.local.", "loanservice");
+            if(loanServiceInfo == null){
+                JOptionPane.showMessageDialog(null,"Loan Management service not found","error",JOptionPane.ERROR_MESSAGE);
+            }else{
+                System.out.println(loanServiceInfo.getName() + " found");
+            }
+        }catch(Exception e){
             
-            ServiceRegistration libraryServerRegistration = new ServiceRegistration();
-            libraryServerRegistration.serviceRegistration("libraryService", "library server", 9092);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
         //Call the GUI components
         initComponents();
