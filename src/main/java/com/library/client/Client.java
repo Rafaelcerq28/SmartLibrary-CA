@@ -20,7 +20,6 @@ import com.grpcfiles.UserManagementGrpc;
 import com.grpcfiles.UserManagementGrpc.UserManagementBlockingStub;
 import com.grpcfiles.UserOuterClass.UserRequest;
 import com.grpcfiles.UserOuterClass.UserResponse;
-import com.library.server.ServiceRegistration;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -61,7 +60,6 @@ public class Client extends javax.swing.JFrame {
 
         //Initializin Registering JmDNS
         try {
-            //testing
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 
             ServiceInfo bookServiceInfo = jmdns.getServiceInfo("_grpc._tcp.local.", "bookservice");           
